@@ -1,112 +1,126 @@
-import Image from "next/image";
+import Head from 'next/head';
 import { Geist, Geist_Mono } from "next/font/google";
 
+import Hero from '../components/Hero';
+import ProjectShowcase from '../components/ProjectShowcase';
+import { getFeaturedProjects } from '../data/project';
+
+// Configure Geist Sans font
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
+// Configure Geist Mono font for code and technical content
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+/**
+ * Home Page Component
+ * Landing page for the blockchain developer portfolio
+ */
 export default function Home() {
+  // Hero section configuration
+  const heroConfig = {
+    title: "Blockchain Developer & Smart Contract Engineer",
+    subtitle: "Specialized in building secure and efficient decentralized applications with a focus on gas optimization and user experience.",
+    achievements: [
+      { id: "ethglobal", label: "🏆 EthGlobal Winner" },
+      { id: "starkhack", label: "🚀 StarkHack Prize" },
+      { id: "hackfs", label: "💎 HackFS Grand Prize" },
+    ],
+    ctaLink: "/projects",
+    ctaText: "View Projects",
+    secondaryCtaLink: "/resume.pdf",
+    secondaryCtaText: "Download Resume",
+    profileImage: "/profile.jpg",
+  };
+  
+  // Get featured projects
+  const featuredProjects = getFeaturedProjects();
+  
+  // Tech stack items to be displayed as badges
+  const techStack = [
+    "Solidity", "Ethereum", "Web3.js", "React", "Next.js", 
+    "TypeScript", "Solana", "zkAuth", "IPFS"
+  ];
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}>
+      <Head>
+        <title>Blockchain Developer Portfolio</title>
+        <meta name="description" content="Expert blockchain developer specializing in Ethereum, Solana, and Web3 technologies" />
+        <meta property="og:title" content="Blockchain Developer Portfolio" />
+        <meta property="og:description" content="Expert blockchain developer specializing in Ethereum, Solana, and Web3 technologies" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+  
+      
+      <main className="p-8 sm:p-16 space-y-16">
+        {/* Hero Section */}
+        <Hero {...heroConfig} />
+        
+        {/* Featured Projects Section */}
+        <ProjectShowcase
+          title="Featured Projects"
+          description="A selection of my blockchain development work showcasing smart contracts, dApps, and Web3 integrations."
+          projects={featuredProjects}
+          viewAllLink="/projects"
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        
+        {/* Tech Skills Section */}
+        <section className="space-y-6 max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold">Technical Skills</h2>
+          
+          {/* Skills grid */}
+          <div className="flex flex-wrap gap-3">
+            {techStack.map((tech, index) => (
+              <span 
+                key={index} 
+                className={`px-4 py-2 rounded-lg font-mono text-sm bg-gray-100 dark:bg-gray-800 
+                  ${index % 3 === 0 ? 'border-l-4 border-blue-500' : 
+                    index % 3 === 1 ? 'border-l-4 border-purple-500' : 
+                      'border-l-4 border-green-500'}`}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      
+      <footer className="py-6 border-t border-gray-200 dark:border-gray-800 mt-16">
+        <div className="container px-4 md:px-6 mx-auto flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            © {new Date().getFullYear()} • Built with Next.js and Tailwind CSS
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a 
+              href="https://github.com/yourusername" 
+              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+              aria-label="GitHub Profile"
+            >
+              GitHub
+            </a>
+            <a 
+              href="https://linkedin.com/in/yourusername" 
+              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+              aria-label="LinkedIn Profile"
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="https://twitter.com/yourusername" 
+              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+              aria-label="Twitter Profile"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );
