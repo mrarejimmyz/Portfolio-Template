@@ -95,7 +95,7 @@ export default function ContactForm() {
       } else {
         throw new Error('Form submission failed');
       }
-    } catch (error) {
+    } catch {
       setFormStatus({
         submitted: true,
         submitting: false,

@@ -69,13 +69,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     // Detect idle time to complete loading
     if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => {
-        incrementProgress(10);
-        setTimeout(() => {
-          setLoadingState({ isLoading: false, progress: 100 });
-        }, 100);
-      });
-    } else {
+          window.requestIdleCallback(() => {
+              incrementProgress(10);
+              setTimeout(() => {
+                  setLoadingState({ isLoading: false, progress: 100 });
+              }, 100);
+          });
+      } else {
       // Fallback for browsers without requestIdleCallback
       setTimeout(() => {
         incrementProgress(10);

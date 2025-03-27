@@ -126,7 +126,7 @@ export default function About() {
                   Having worked with leading blockchain protocols including Ethereum, Solana, and Layer 2 solutions, I bring a comprehensive understanding of the blockchain ecosystem to every project. My approach combines technical excellence with practical business insights to create solutions that are not only technically sound but also aligned with real-world needs.
                 </p>
                 <p>
-                  I'm passionate about advancing the adoption of blockchain technology through accessible and secure applications. My work has been recognized at major hackathons, including EthGlobal, StarkHack, and HackFS, where I've won multiple prizes for innovative implementations.
+                  I&apos;m passionate about advancing the adoption of blockchain technology through accessible and secure applications. My work has been recognized at major hackathons, including EthGlobal, StarkHack, and HackFS, where I&apos;ve won multiple prizes for innovative implementations.
                 </p>
               </div>
             </div>

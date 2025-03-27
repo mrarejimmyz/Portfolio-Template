@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -8,8 +7,8 @@ import matter from 'gray-matter';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { Highlight, themes } from 'prism-react-renderer';
+
 
 
 // Interface for blog post metadata
@@ -32,38 +31,50 @@ interface BlogPostProps {
 
 // Custom components for MDX rendering
 const components = {
-  h1: (props: any) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-  h2: (props: any) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
-  h3: (props: any) => <h3 className="text-xl font-bold mt-5 mb-2" {...props} />,
-  p: (props: any) => <p className="my-4 text-lg" {...props} />,
-  a: (props: any) => <a className="text-blue-600 hover:underline dark:text-blue-400" {...props} />,
-  ul: (props: any) => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: any) => <ol className="list-decimal pl-6 my-4" {...props} />,
-  li: (props: any) => <li className="my-2" {...props} />,
-  blockquote: (props: any) => (
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h3 className="text-xl font-bold mt-5 mb-2" {...props} />,
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <p className="my-4 text-lg" {...props} />,
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a className="text-blue-600 hover:underline dark:text-blue-400" {...props} />,
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => <ul className="list-disc pl-6 my-4" {...props} />,
+  ol: (props: React.HTMLAttributes<HTMLOListElement>) => <ol className="list-decimal pl-6 my-4" {...props} />,
+  li: (props: React.LiHTMLAttributes<HTMLLIElement>) => <li className="my-2" {...props} />,
+  blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote className="border-l-4 border-gray-300 pl-4 my-4 italic" {...props} />
   ),
-  code: ({ className, children, ...props }: any) => {
-    // Check if this is an inline code block or a code block with language
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
     const match = /language-(\w+)/.exec(className || '');
+    // Extract language from the match
+    const language = match ? match[1] : '';
     
+    // Get code string from children
+    const codeString = String(children).replace(/\n$/, '');
     return match ? (
-      <SyntaxHighlighter
-        language={match[1]}
-        style={atomDark}
-        className="rounded-md my-4"
-        showLineNumbers
-        {...props}
-      >
-        {String(children).replace(/\n$/, '')}
-      </SyntaxHighlighter>
+      <Highlight 
+      theme={themes.nightOwl}
+      code={codeString}
+      language={language}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre className={className} style={style}>
+          {tokens.map((line, i) => (
+            <div key={i} {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
     ) : (
       <code className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded font-mono" {...props}>
         {children}
       </code>
     );
   },
-  img: ({ src, alt }: any) => (
+  
+  img: ({ src, alt }: { src: string; alt?: string }) => (
     <div className="relative w-full h-64 sm:h-96 my-6">
       <Image 
         src={src} 
@@ -76,12 +87,14 @@ const components = {
   ),
 };
 
+
 /**
  * Blog Post Component
  * Renders a full blog post from MDX content
  */
-export default function BlogPost({ source, frontMatter, slug }: BlogPostProps) {
-  const [timeToRead, setTimeToRead] = useState<string>(frontMatter.readTime || "5 min read");
+export default function BlogPost({ source, frontMatter }: BlogPostProps) {
+  const timeToRead = frontMatter.readTime || "5 min read";
+
   
   // Format date to be more readable
   const formatDate = (dateString: string) => {

@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Navbar from '../../components/Navbar';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemoteSerializeResult, MDXRemote } from 'next-mdx-remote';
+
 
 // Define TypeScript interface for project data
 interface ProjectDetails {
@@ -24,28 +24,48 @@ interface ProjectDetails {
   liveUrl?: string; // Optional
   achievements?: string[];
   codeSnippet?: string;
-  content?: any; // MDX content
+  content?: MDXRemoteSerializeResult; // Updated type
 }
 
 /**
  * MDX components for rendering project case studies
  */
+/**
+ * MDX components for rendering project case studies
+ */
 const components = {
-  h1: (props: any) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-  h2: (props: any) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
-  h3: (props: any) => <h3 className="text-xl font-bold mt-5 mb-2" {...props} />,
-  p: (props: any) => <p className="my-4 text-lg" {...props} />,
-  a: (props: any) => <a className="text-blue-600 hover:underline dark:text-blue-400" {...props} />,
-  ul: (props: any) => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: any) => <ol className="list-decimal pl-6 my-4" {...props} />,
-  li: (props: any) => <li className="my-2" {...props} />,
-  blockquote: (props: any) => (
+  h1: (props: React.ComponentProps<'h1'>) => (
+    <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
+  ),
+  h2: (props: React.ComponentProps<'h2'>) => (
+    <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />
+  ),
+  h3: (props: React.ComponentProps<'h3'>) => (
+    <h3 className="text-xl font-bold mt-5 mb-2" {...props} />
+  ),
+  p: (props: React.ComponentProps<'p'>) => (
+    <p className="my-4 text-lg" {...props} />
+  ),
+  a: (props: React.ComponentProps<'a'>) => (
+    <a className="text-blue-600 hover:underline dark:text-blue-400" {...props} />
+  ),
+  ul: (props: React.ComponentProps<'ul'>) => (
+    <ul className="list-disc pl-6 my-4" {...props} />
+  ),
+  ol: (props: React.ComponentProps<'ol'>) => (
+    <ol className="list-decimal pl-6 my-4" {...props} />
+  ),
+  li: (props: React.ComponentProps<'li'>) => (
+    <li className="my-2" {...props} />
+  ),
+  blockquote: (props: React.ComponentProps<'blockquote'>) => (
     <blockquote className="border-l-4 border-gray-300 pl-4 my-4 italic" {...props} />
   ),
-  code: ({ className, children, ...props }: any) => {
-    // Check if this is an inline code block or a code block with language
+  code: ({ className, children, ...props }: { 
+    className?: string; 
+    children: React.ReactNode; 
+  } & Partial<SyntaxHighlighterProps & React.HTMLAttributes<HTMLElement>>) => {
     const match = /language-(\w+)/.exec(className || '');
-    
     return match ? (
       <SyntaxHighlighter
         language={match[1]}
@@ -62,7 +82,7 @@ const components = {
       </code>
     );
   },
-  img: ({ src, alt }: any) => (
+  img: ({ src, alt }: { src: string; alt?: string }) => (
     <div className="relative w-full h-64 sm:h-96 my-6">
       <Image 
         src={src} 
@@ -73,8 +93,7 @@ const components = {
       />
     </div>
   ),
-  // Add custom diagram component
-  Diagram: ({ src, alt, caption }: any) => (
+  Diagram: ({ src, alt, caption }: { src: string; alt?: string; caption?: string }) => (
     <figure className="my-8">
       <div className="relative w-full h-64 sm:h-96">
         <Image 

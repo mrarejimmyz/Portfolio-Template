@@ -1,4 +1,7 @@
+mdx
+
 ---
+
 title: 'EthGlobal Winner: Meta-Transaction Framework'
 description: 'A gas-free transaction framework that won the EthGlobal hackathon'
 techStack: ['Solidity', 'Ethereum', 'React', 'Hardhat', 'Ethers.js']
@@ -6,6 +9,7 @@ images: ['/projects/ethglobal-cover.png', '/projects/ethglobal-detail.png']
 githubUrl: 'https://github.com/yourusername/ethglobal-project'
 liveUrl: 'https://ethglobal-demo.example.com'
 achievements: ['EthGlobal Hackathon Winner', 'Featured in Ethereum Foundation blog']
+
 ---
 
 # Meta-Transaction Framework
@@ -44,168 +48,189 @@ We developed a comprehensive meta-transaction framework that allows users to sig
 
 The core of our solution is a smart contract component that validates signatures and executes functions:
 
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract MetaTransactionHandler {
-// Mapping from user addresses to their nonces
-mapping(address => uint256) public nonces;
+    // Mapping from user addresses to their nonces
+    mapping(address => uint256) public nonces;
 
-text
-// Domain separator for EIP-712
-bytes32 private immutable DOMAIN_SEPARATOR;
+    // Domain separator for EIP-712
+    bytes32 private immutable DOMAIN_SEPARATOR;
 
-constructor() {
-uint256 chainId;
-assembly {
-chainId := chainid()
+    constructor() {
+        uint256 chainId;
+        assembly {
+            chainId := chainid()
+        }
+
+        DOMAIN_SEPARATOR = keccak256(
+            abi.encode(
+                keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
+                keccak256(bytes("MetaTx Framework")),
+                keccak256(bytes("1")),
+                chainId,
+                address(this)
+            )
+        );
+    }
+
+    function executeMetaTransaction(
+        address userAddress,
+        bytes memory functionData,
+        bytes32 r,
+        bytes32 s,
+        uint8 v
+    ) public returns (bytes memory) {
+        bytes32 structHash = keccak256(
+            abi.encode(
+                keccak256("MetaTransaction(address userAddress,bytes functionData,uint256 nonce)"),
+                userAddress,
+                keccak256(functionData),
+                nonces[userAddress]
+            )
+        );
+
+        bytes32 digest = keccak256(
+            abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR, structHash)
+        );
+
+        address signer = ecrecover(digest, v, r, s);
+        require(signer == userAddress, "MetaTransaction: SIGNER_AND_SIGNATURE_DO_NOT_MATCH");
+
+        nonces[userAddress]++;
+
+        // Execute the transaction
+        (bool success, bytes memory returnData) = address(this).call(functionData);
+        require(success, "MetaTransaction: FUNCTION_CALL_FAILED");
+
+        return returnData;
+    }
 }
 
-    DOMAIN_SEPARATOR = keccak256(
-        abi.encode(
-            keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
-            keccak256(bytes("MetaTx Framework")),
-            keccak256(bytes("1")),
-            chainId,
-            address(this)
-        )
-    );
-
-}
-
-function executeMetaTransaction(
-address userAddress,
-bytes memory functionData,
-bytes32 r,
-bytes32 s,
-uint8 v
-) public returns (bytes memory) {
-bytes32 structHash = keccak256(
-abi.encode(
-keccak256("MetaTransaction(address userAddress,bytes functionData,uint256 nonce)"),
-userAddress,
-keccak256(functionData),
-nonces[userAddress]
-)
-);
-
-    bytes32 digest = keccak256(
-        abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR, structHash)
-    );
-
-    address signer = ecrecover(digest, v, r, s);
-    require(signer == userAddress, "MetaTransaction: SIGNER_AND_SIGNATURE_DO_NOT_MATCH");
-
-    nonces[userAddress]++;
-
-    // Execute the transaction
-    (bool success, bytes memory returnData) = address(this).call(functionData);
-    require(success, "MetaTransaction: FUNCTION_CALL_FAILED");
-
-    return returnData;
-
-}
-}
-
-text
-
-### Client Implementation
-
+This is the complete smart contract implementation for handling meta-transactions on-chain.
+Client Implementation
 On the client side, we developed a React hook that makes it easy for any dApp to integrate our solution:
+javascript
 
 // useMetaTransaction.js
 import { ethers } from 'ethers';
 import { useCallback } from 'react';
 
 export function useMetaTransaction(contractAddress, abi, relayerUrl) {
-const metaTransaction = useCallback(async (method, params, signer) => {
-// Create contract interface to encode function data
-const contract = new ethers.Contract(contractAddress, abi);
-const functionData = contract.interface.encodeFunctionData(method, params);
+    const metaTransaction = useCallback(async (method, params, signer) => {
+        // Create contract interface to encode function data
+        const contract = new ethers.Contract(contractAddress, abi);
+        const functionData = contract.interface.encodeFunctionData(method, params);
 
-text
-// Get user address
-const userAddress = await signer.getAddress();
+        // Get user address
+        const userAddress = await signer.getAddress();
 
-// Get user's current nonce
-const nonce = await contract.nonces(userAddress);
+        // Get user's current nonce
+        const nonce = await contract.nonces(userAddress);
 
-// Create typed data for EIP-712 signature
-const domain = {
-name: 'MetaTx Framework',
-version: '1',
-chainId: (await signer.provider.getNetwork()).chainId,
-verifyingContract: contractAddress
-};
+        // Create typed data for EIP-712 signature
+        const domain = {
+            name: 'MetaTx Framework',
+            version: '1',
+            chainId: (await signer.provider.getNetwork()).chainId,
+            verifyingContract: contractAddress
+        };
 
-const types = {
-MetaTransaction: [
-{ name: 'userAddress', type: 'address' },
-{ name: 'functionData', type: 'bytes' },
-{ name: 'nonce', type: 'uint256' }
-]
-};
+        const types = {
+            MetaTransaction: [
+                { name: 'userAddress', type: 'address' },
+                { name: 'functionData', type: 'bytes' },
+                { name: 'nonce', type: 'uint256' }
+            ]
+        };
 
-const value = {
-userAddress,
-functionData,
-nonce: nonce.toString()
-};
+        const value = {
+            userAddress,
+            functionData,
+            nonce: nonce.toString()
+        };
 
-// Sign the transaction
-const signature = await signer.\_signTypedData(domain, types, value);
-const { r, s, v } = ethers.utils.splitSignature(signature);
+        // Sign the transaction
+        const signature = await signer._signTypedData(domain, types, value);
+        const { r, s, v } = ethers.utils.splitSignature(signature);
 
-// Send to relayer
-const response = await fetch(relayerUrl, {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json'
-},
-body: JSON.stringify({
-userAddress,
-functionData,
-r, s, v,
-contractAddress
-})
-});
+        // Send to relayer
+        const response = await fetch(relayerUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userAddress,
+                functionData,
+                r, s, v,
+                contractAddress
+            })
+        });
 
-return response.json();
-}, [contractAddress, abi, relayerUrl]);
+        return response.json();
+    }, [contractAddress, abi, relayerUrl]);
 
-return metaTransaction;
+    return metaTransaction;
 }
 
-text
-
-## Performance Metrics
-
+This hook simplifies the integration of meta-transactions into React-based dApps.
+Performance Metrics
 Our framework has demonstrated significant improvements in user experience metrics:
+Metric
 
-| Metric                   | Before | After | Improvement   |
-| ------------------------ | ------ | ----- | ------------- |
-| User Onboarding Time     | 26 min | 2 min | 92% reduction |
-| Transaction Success Rate | 76%    | 99.2% | 30% increase  |
-| User Retention (7-day)   | 22%    | 64%   | 191% increase |
+Before
 
-## Hackathon Success
+After
 
+Improvement
+
+User Onboarding Time
+
+26 min
+
+2 min
+
+92% reduction
+
+Transaction Success Rate
+
+76%
+
+99.2%
+
+30% increase
+
+User Retention (7-day)
+
+22%
+
+64%
+
+191% increase
+
+Hackathon Success
 This project won first place at the EthGlobal hackathon, with judges particularly impressed by:
+The complete end-to-end solution
 
-1. The complete end-to-end solution
-2. The developer-friendly SDK
-3. The innovative relayer incentive mechanism
-4. The robust security model
+The developer-friendly SDK
 
-## Future Development
+The innovative relayer incentive mechanism
 
+The robust security model
+
+Future Development
 We're continuing to develop this framework with these planned enhancements:
+Integration with ERC-4337 (Account Abstraction)
 
-- Integration with ERC-4337 (Account Abstraction)
-- Expansion to layer-2 solutions like Arbitrum and Optimism
-- Development of a token-based incentive system for relayers
-- Enhanced security auditing and formal verification
+Expansion to layer-2 solutions like Arbitrum and Optimism
 
----
+Development of a token-based incentive system for relayers
+
+Enhanced security auditing and formal verification
 
 This project demonstrates the potential for removing friction from blockchain applications while maintaining the security and decentralization benefits that make the technology valuable.
+
+```
