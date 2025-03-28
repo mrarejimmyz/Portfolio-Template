@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import Navbar from '../components/Navbar';
 import { Geist, Geist_Mono } from "next/font/google";
 import Preloader from '../components/Preloader';
+import ChatNavigator from '../components/ChatNavigator';
 import '../styles/globals.css';
 
 // Optimize font loading with display strategy
@@ -24,6 +25,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     progress: 0
   });
   const resourcesChecked = useRef(false);
+  const [highlightedSection] = useState<string | null>(null);
+ // Add state for highlighted section
 
   useEffect(() => {
     // Only run once
@@ -96,6 +99,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <>
           <Navbar />
           <Component {...pageProps} />
+          <ChatNavigator highlightedSection={highlightedSection} />
         </>
       )}
     </div>
