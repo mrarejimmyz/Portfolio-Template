@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Filebase credentials
-const filebaseKey = 'zi53dlb5w5sdr7e07b1a'; // Your Filebase key
+
 const filebaseGateway = 'https://inland-coffee-junglefowl.myfilebase.com/ipfs/';
 const targetPath = process.argv[2];
 
