@@ -1,13 +1,29 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body className="antialiased">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+const scriptTxt = `
+(function () {
+  const { pathname } = window.location;
+  const ipfsMatch = /.*\\/Qm\\w{44}\\//.exec(pathname);
+  const base = document.createElement('base');
+  base.href = ipfsMatch ? ipfsMatch : '/';
+  document.head.append(base);
+})();
+`;
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>
+          <script dangerouslySetInnerHTML={{ __html: scriptTxt }} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
+
+export default MyDocument;

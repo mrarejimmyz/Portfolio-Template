@@ -429,6 +429,6 @@ contract MetaTransactionHandler {
       project,
     },
     // Revalidate once per day
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }

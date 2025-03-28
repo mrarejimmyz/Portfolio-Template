@@ -3,7 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   compress: true,
+  output: 'export',
   productionBrowserSourceMaps: false,
+  
+  // Fix the assetPrefix format - must start with a slash
+  assetPrefix: '/', // Changed from './'
+  trailingSlash: true,
+  basePath: '',
   
   // Valid experimental features
   experimental: {
@@ -14,10 +20,10 @@ const nextConfig: NextConfig = {
   
   // Image optimization
   images: {
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60
+    unoptimized: true,
+    domains: [],
+    remotePatterns: []
   }
 };
-
 
 export default nextConfig;

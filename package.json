@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -9,10 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pinata/sdk": "^2.1.0",
     "critters": "^0.0.23",
+    "dotenv": "^16.4.7",
     "gray-matter": "^4.0.3",
     "next": "15.2.4",
     "next-mdx-remote": "^5.0.0",
+    "pinata": "^2.1.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
