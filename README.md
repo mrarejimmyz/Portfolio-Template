@@ -115,8 +115,7 @@ const [messages, setMessages] = useLocalStorage('chatMessages', [
 
 Deployed on IPFS for decentralized hosting:
 
-- [Dedicated IPFS Gateway](https://inland-coffee-junglefowl.myfilebase.com/)
-- [Public IPFS Gateway](https://ipfs.io/ipfs/Qma19cD7S3axMZjrXGMEer7SSSrM8JKrt3cLEe3eee4ark/)
+- [Public IPFS Gateway](https://bafybeig7psijlskmzikljfqpgqrt6m6g4vf7aoctpocfgkc73yhoqsnfcm.ipfs.dweb.link/)
 
 ## 🏆 Achievements
 
@@ -127,8 +126,8 @@ Deployed on IPFS for decentralized hosting:
 ## 📬 Contact
 
 - LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashishregmi)
-- GitHub: [ashishregmi](https://github.com/ashishregmi)
-- Email: [contact@ashishregmi.com](mailto:contact@ashishregmi.com)
+- GitHub: [ashishregmi](https://github.com/mrarejimmyz)
+- Email: [mrarejimmy@jimpsons.org](mailto:mrarejimmy@jimpsons.org)
 
 ## 📄 License
 
