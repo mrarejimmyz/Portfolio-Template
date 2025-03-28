@@ -125,7 +125,7 @@ Deployed on IPFS for decentralized hosting:
 
 ## 📬 Contact
 
-- LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashishregmi)
+- LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashish-regmi)
 - GitHub: [ashishregmi](https://github.com/mrarejimmyz)
 - Email: [mrarejimmy@jimpsons.org](mailto:mrarejimmy@jimpsons.org)
 
