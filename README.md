@@ -1,40 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Portfolio with Interactive Navigator Chatbot
 
-## Getting Started
+An interactive Next.js-powered portfolio with an AI chatbot assistant, deployed on IPFS for a fully decentralized experience. This project combines a professional portfolio showcase with an innovative navigation system.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Professional Portfolio Showcase**: Comprehensive display of projects, skills, and achievements
+- **Interactive AI Chatbot**: Guides visitors through portfolio sections using natural language
+- **Animated Transitions**: Smooth animations when navigating between sections
+- **Persistent Chat History**: Conversations saved between page navigations using localStorage
+- **Fully Decentralized**: Deployed on IPFS with no server dependencies
+- **Responsive Design**: Seamless experience on both desktop and mobile devices
+- **Project Showcase**: Detailed case studies and project cards
+- **Blog Integration**: MDX support for rich content creation
+- **Performance Optimized**: Lazy loading and asset optimization
+
+## 💻 Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- TailwindCSS
+- Framer Motion (for animations)
+- IPFS (for decentralized hosting)
+
+## 🗂️ Project Structure
+
+```
+portfolio/
+├── public/           # Static assets (images, resume PDF)
+├── src/              # Source code directory
+│ ├── components/     # Reusable components
+│ │ ├── Navbar.tsx
+│ │ ├── Hero.tsx
+│ │ ├── ProjectCard.tsx
+│ │ ├── ChatNavigator.tsx
+│ ├── pages/          # Next.js pages
+│ │ ├── index.tsx     # Home page
+│ │ ├── projects.tsx  # Projects page
+│ │ ├── blog.tsx      # Blog page
+│ │ └── projects/     # Dynamic routes for case studies
+│ │     └── [id].tsx
+│ ├── styles/         # Global and component-specific styles
+│ │ └── globals.css   # Tailwind configuration
+│ ├── hooks/          # Custom React hooks
+│ │ └── useLocalStorage.ts
+│ ├── utils/          # Utility functions
+│ │ └── chatUtils.ts
+│ └── data/           # Static data and content
+│     └── portfolioData.ts
+├── next.config.js    # Next.js configuration
+├── tsconfig.json     # TypeScript configuration
+├── package.json      # Project dependencies and scripts
+└── README.md         # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔍 Portfolio Sections
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- **Home**: Professional introduction and key highlights
+- **Projects**: Showcase of web3 and blockchain development work
+- **Blog**: Technical articles and case studies
+- **About**: Professional background and skills
+- **Contact**: Ways to get in touch
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 📊 Project Showcase
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+The portfolio highlights various projects including:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Solana Transaction Monitor with real-time visualization
+- ZK Proof implementations with WorldCoin integration
+- Meta-transaction systems with significant gas optimization
+- Multi-chain NFT deployments across Solana, Base, and StarkWare
 
-## Learn More
+## 🤖 Chatbot Navigation
 
-To learn more about Next.js, take a look at the following resources:
+Click the chat icon in the bottom-right corner to start a conversation. Try asking:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- "Tell me about your Solana experience"
+- "Show me your hackathon wins"
+- "Explain your IPFS deployment process"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Implementation Highlights
 
-## Deploy on Vercel
+### Dynamic Base Tag for IPFS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```javascript
+const scriptTxt = `
+(function () {
+  const { pathname } = window.location
+  const ipfsMatch = /.*\\/Qm\\w{44}\\//.exec(pathname)
+  const base = document.createElement('base')
+  base.href = ipfsMatch ? ipfsMatch : '/'
+  document.head.append(base)
+})();
+`;
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Persistent Chat History
+
+```javascript
+const [messages, setMessages] = useLocalStorage('chatMessages', [
+  { role: 'assistant', content: "Hi there! I'm Ashish's portfolio assistant..." },
+]);
+```
+
+## 🚀 Quick Start
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+4. Build for production: `npm run build`
+5. Export static files: `npm run export`
+
+## 🌐 Deployment
+
+Deployed on IPFS for decentralized hosting:
+
+- [Dedicated IPFS Gateway](https://inland-coffee-junglefowl.myfilebase.com/)
+- [Public IPFS Gateway](https://ipfs.io/ipfs/Qma19cD7S3axMZjrXGMEer7SSSrM8JKrt3cLEe3eee4ark/)
+
+## 🏆 Achievements
+
+- EthGlobal 2023 Winner: zkAuth with WorldCoin/Sybil integration (92% Sybil attack reduction)
+- HackFS Grand Prize: ZK+FHE Storage Solution for Filecoin + Protocol Labs
+- StarkHack: Meta transactions with 98% gas reduction
+
+## 📬 Contact
+
+- LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashishregmi)
+- GitHub: [ashishregmi](https://github.com/ashishregmi)
+- Email: [contact@ashishregmi.com](mailto:contact@ashishregmi.com)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
