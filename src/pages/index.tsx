@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}>
       <Head>
-        <title>Blockchain Developer Portfolio</title>
+        <title>Mrare Jimmy's Portfolio</title>
         <meta name="description" content="Expert blockchain developer specializing in Ethereum, Solana, and Web3 technologies" />
         <meta property="og:title" content="Blockchain Developer Portfolio" />
         <meta property="og:description" content="Expert blockchain developer specializing in Ethereum, Solana, and Web3 technologies" />
