@@ -8,6 +8,7 @@ import React from 'react';
 interface HeroProps {
   title: string;
   subtitle: string;
+  quote?: string;
   achievements: Array<{
     id: string;
     label: string;
@@ -31,6 +32,7 @@ export default function Hero({
   title,
   subtitle,
   achievements,
+  quote,
   ctaLink,
   ctaText,
   secondaryCtaLink,
@@ -72,6 +74,11 @@ export default function Hero({
             <div className="space-y-3">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">{title}</h1>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-[600px] mx-auto md:mx-0">{subtitle}</p>
+              {quote && (
+                <blockquote className="italic text-gray-500 dark:text-gray-400 max-w-[600px] mx-auto md:mx-0">
+                  "{quote}"
+                </blockquote>
+              )}
             </div>
             
             {/* Achievements */}

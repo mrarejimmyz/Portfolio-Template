@@ -28,6 +28,7 @@ export default function Home() {
   const heroConfig = {
     title: "Blockchain Developer, Smart Contract & AI Engineer",
     subtitle: "Building next-gen decentralized and AI-powered systems with cutting-edge efficiency, optimized gas usage, and breakthrough scalability.",
+    quote: "I may not have all the answers yet, but I'll go out and find them.",
     achievements: [
       { id: "ethglobal", label: "🏆 EthGlobal 2023 Winner - WorldCoin zkAuth" },
       { id: "hackfs", label: "💎 HackFS Prize - ZK + FHE Storage Solution" },
@@ -41,14 +42,34 @@ export default function Home() {
     profileImage: "/profile.jpg",
   };
   
+  
   // Get featured projects
   const featuredProjects = getFeaturedProjects();
   
   // Tech stack items to be displayed as badges
   const techStack = [
-    "Solidity", "Ethereum", "Web3.js", "React", "Next.js", 
-    "TypeScript", "Solana", "zkAuth", "IPFS"
+    "Rust",                   // Trending for high-performance systems (e.g., Solana Transaction Monitor)
+    "Python",                 // Popular for backend development and AI integration
+    "JavaScript/TypeScript",  // In-demand for modern web and full-stack development
+    "Solidity",               // Primary language for Ethereum smart contracts
+    "ZK Proofs",              // Cutting-edge technology for secure, privacy-preserving applications
+    "Web3.js",                // Essential for interacting with blockchain networks
+    "Anchor",                 // Streamlines Solana smart contract development
+    "Solana",                 // High-performance blockchain gaining momentum
+    "Ethereum",               // Established blockchain platform for DApps
+    "ReactJS",                // Dominant frontend framework for building dynamic user interfaces
+    "NodeJS",                 // Robust backend runtime for JavaScript applications
+    "Django",                 // Versatile Python web framework for scalable APIs
+    "GraphQL",                // Modern API query language for efficient data fetching
+    "WebSocket",              // Enables real-time communication in web applications
+    "IPFS",                   // Decentralized file storage solution
+    "Docker",                 // Standard tool for containerization and deployment
+    "Google Cloud",           // Scalable cloud infrastructure provider
+    "CI/CD",                  // Best practices for continuous integration and deployment
+    "Apex"                    // Specialized for Salesforce development (niche but valuable)
   ];
+  
+  
   
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}>
