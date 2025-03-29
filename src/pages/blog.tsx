@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import emailjs from '@emailjs/browser';
+import { NewsletterSignup } from '../components/NewsletterSignup';
+
 
 // Define TypeScript interfaces for blog data
 interface BlogPost {
@@ -34,6 +36,12 @@ interface BlogPageProps {
  * Displays a collection of technical blog posts with filtering options
  */
 export default function Blog({ posts }: BlogPageProps) {
+
+  useEffect(() => {
+    emailjs.init({
+      publicKey: "Cq1YMJTkTlpQbx_No",
+    });
+  }, []);
   // Category filters for blog posts
   const categories: CategoryFilter[] = [
     { id: 'all', name: 'All Posts' },
@@ -162,29 +170,8 @@ export default function Blog({ posts }: BlogPageProps) {
           </div>
         )}
 
-        {/* Newsletter signup (optional) */}
-        <div className="mt-20 bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 sm:p-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Subscribe to receive notifications when new articles are published.
-            </p>
-            <form className="sm:flex justify-center gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full sm:w-auto px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-700 mb-4 sm:mb-0 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
+         {/* Replace the existing newsletter section with the new component */}
+         <NewsletterSignup />
       </div>
     </>
   );

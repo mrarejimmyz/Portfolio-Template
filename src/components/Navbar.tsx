@@ -34,7 +34,7 @@ export default function Navbar() {
           <Link href="/blog" className={`transition-colors ${isActive('/blog')}`}>
             Blog
           </Link>
-          <Link href="/contact" className="hover:text-gray-300 transition-colors">
+          <Link href="/contact" className={`transition-colors ${isActive('/contact')}`}>
             Contact
           </Link>
         </div>
@@ -86,8 +86,8 @@ export default function Navbar() {
             Blog
           </Link>
           <Link 
-            href="/#contact" 
-            className="block py-2 hover:text-gray-300"
+            href="/contact" 
+            className= {`block py-2 ${isActive('/contact')}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             Contact
