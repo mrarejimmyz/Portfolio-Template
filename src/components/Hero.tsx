@@ -76,7 +76,7 @@ export default function Hero({
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-[600px] mx-auto md:mx-0">{subtitle}</p>
               {quote && (
                 <blockquote className="italic text-gray-500 dark:text-gray-400 max-w-[600px] mx-auto md:mx-0">
-                  "{quote}"
+                  &quot;{quote}&quot;
                 </blockquote>
               )}
             </div>

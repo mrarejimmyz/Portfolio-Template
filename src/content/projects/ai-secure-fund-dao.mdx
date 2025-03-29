@@ -1,0 +1,113 @@
+---
+title: 'AISecureFundDAO'
+description: 'Next-gen DAO governance combining encrypted voting, TEE-secured processing, and AI-driven insights for fully private, verifiable on-chain decisions.'
+techStack:
+  - Solidity
+  - Arbitrum
+  - Homomorphic Encryption
+  - Marlin TEE
+  - Nethermind AI
+  - Nillion SecretLLM
+  - 0G Storage
+  - FastAPI
+  - React
+  - TypeScript
+images:
+  - '/projects/aisecurefunddao-cover.png'
+  - '/projects/aisecurefunddao-diagram.png'
+githubUrl: 'https://github.com/yourusername/aisecurefunddao'
+liveUrl: 'https://aisecurefunddao.example.com'
+achievements:
+  - 'Privacy-Preserving Governance Innovation'
+  - 'Seamless TEE & AI Integration'
+---
+
+# AISecureFundDAO
+
+**AISecureFundDAO** is an advanced decentralized governance system that ensures privacy, security, and AI-driven insights for transparent yet confidential decision-making.
+
+## 🔒 Core Architecture
+
+- **Privacy-First Voting**: Homomorphic encryption ensures votes remain confidential while enabling transparent tallying.
+- **TEE-Enabled Trust**: Marlin’s Trusted Execution Environment (TEE) processes encrypted votes/bids in secure enclaves.
+- **AI Governance**: Nethermind’s AI analyzes proposals and voting patterns for strategic insights without exposing sensitive data.
+- **Sealed-Bid Auctions**: Prevents front-running with encrypted bids decrypted only in TEE.
+- **Proof-Based Verification**: Cryptographic attestations validate TEE computations without revealing raw data.
+
+## ⚙️ Technical Implementation
+
+AISecureFundDAO consists of multiple layers:
+
+### **Modular Smart Contracts**
+
+Implemented in **Solidity (v0.8.26)** and deployed on **Arbitrum Sepolia**:
+
+- **ProjectRegistry.sol** – Handles proposal submission and metadata management.
+- **PrivateVoting.sol** – Enables encrypted vote collection with TEE integration.
+- **SealedBidAuction.sol** – Ensures confidential treasury allocation.
+- **ResultVerification.sol** – Cryptographic proof validation for governance results.
+- **Treasury.sol** – Distributes funds based on verified outcomes.
+
+### **TEE Integration (Marlin)**
+
+- **Marlin Secure Enclave**: Processes encrypted votes and bids.
+- **Attestation Generation**: Provides cryptographic proofs of TEE computations.
+- **Custom Blockchain Bridge**: Python script fetches encrypted votes from contract storage.
+
+### **Privacy Layer**
+
+- **Homomorphic Encryption**: Client-side vote encryption before submission.
+- **Bytes32 Storage Pattern**: Ensures votes remain encrypted on-chain.
+- **Front-End Encryption**: Vote encryption performed in the browser before submission.
+
+### **Private AI Analysis (Nillion)**
+
+- **Nillion SecretLLM**: AI analyzes voting patterns while preserving privacy.
+- **Confidential Insights**: Secure AI processing for governance data.
+- **TEE-to-Nillion Bridge**: Connects Marlin TEE outputs to Nillion’s secure AI environment.
+
+### **AI Governance (Nethermind)**
+
+- **Static Agent Implementation**: Specialized AI for DAO governance.
+- **React-Based AI Dashboard**: Custom UI component for proposal insights.
+- **Proposal Risk Analysis**: AI evaluates risks, benefits, and strategic value.
+
+### **Storage & API (0G)**
+
+- **Persistent Key-Value Storage**: Stores vote results and AI insights securely.
+- **Metadata Management**: Optimized schema for governance data.
+- **FastAPI Backend**: Lightweight API exposing TEE-processed results.
+
+## 🛠️ Key Innovations
+
+- **Dual Privacy**: Votes and bids remain encrypted on-chain, decrypted only in TEE.
+- **Cross-Protocol Security**: Homomorphic encryption (data privacy) + TEE (compute integrity) + blockchain (immutability).
+- **Governance-as-a-Stack**: Modular contracts enable custom governance flows (funding, auctions, verification).
+
+## 🔥 Impact & Benefits
+
+- 🛡️ **Prevents voter coercion** via full privacy.
+- 🔍 **Enables auditability** without exposing individual choices.
+- 🤖 **AI-powered insights** improve governance decisions.
+- 💰 **Protects treasury allocations** from MEV front-running.
+
+## 🌍 Frontend Development
+
+Built with **React + TypeScript**:
+
+- **Web3 Integration**: `viem` & `ethers.js` handle smart contract interactions.
+- **TEE Visualization**: Animated UI shows secure vote processing.
+- **AI Dashboard**: Custom **NethermindAIPanel** for proposal analysis.
+
+## 🛠️ Integration Challenges & Solutions
+
+- **TEE Vote Parsing**: Custom parser for raw `bytes32` blockchain data.
+- **Address Checksums**: Implemented proper Web3.js conversions.
+- **Cross-Type Compatibility**: Built React-Python adapters for smooth frontend-backend communication.
+
+## 🚀 Conclusion
+
+AISecureFundDAO successfully integrates **blockchain privacy, secure computing, and AI** into a single governance framework.  
+By ensuring **confidentiality, verifiability, and strategic AI insights**, it **solves major DAO governance challenges** and sets a new standard for **privacy-preserving decentralized decision-making**.
+
+---

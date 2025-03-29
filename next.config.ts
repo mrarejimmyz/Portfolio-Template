@@ -1,4 +1,16 @@
 import type { NextConfig } from "next";
+import createMDX from '@next/mdx';
+
+// Configure MDX
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+});
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -6,10 +18,13 @@ const nextConfig: NextConfig = {
   output: 'export',
   productionBrowserSourceMaps: false,
   
-  // Fix the assetPrefix format - must start with a slash
-  assetPrefix: '/', // Changed from './'
+  // Fix the assetPrefix format for IPFS compatibility
+  assetPrefix: '/', // Use relative paths for IPFS
   trailingSlash: true,
   basePath: '',
+  
+  // Add MDX as a page extension
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   
   // Valid experimental features
   experimental: {
@@ -20,10 +35,29 @@ const nextConfig: NextConfig = {
   
   // Image optimization
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export
     domains: [],
     remotePatterns: []
-  }
+  },
+  
+  // Webpack configuration for MDX processing
+  webpack: (config) => {
+    // Add MDX file handling
+    config.module.rules.push({
+      test: /\.mdx?$/,
+      use: [
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            providerImportSource: '@mdx-js/react',
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
 };
 
-export default nextConfig;
+// Apply MDX configuration
+export default withMDX(nextConfig);

@@ -1,0 +1,75 @@
+---
+title: 'Task DAO'
+description: 'Decentralized autonomous organization for task management'
+techStack:
+  - Ethereum
+  - Solidity
+  - The Graph
+  - React
+  - IPFS
+images:
+  - '/projects/taskdao-cover.png'
+  - '/projects/taskdao-detail.png'
+githubUrl: 'https://github.com/yourusername/task-dao'
+liveUrl: 'https://taskdao.example.com'
+achievements:
+  - 'HackFS Grand Prize'
+---
+
+# Task DAO
+
+**Task DAO** is a decentralized platform where communities can organize, assign, and reward tasks through a transparent governance system. It includes voting mechanisms, task verification, and token-based incentives.
+
+## Key Features
+
+- **Transparent Governance**: All decisions are made through community voting.
+- **Task Verification**: Ensure tasks are completed as per requirements.
+- **Token-Based Incentives**: Reward contributors with tokens for their efforts.
+
+## Technical Implementation
+
+The platform is built on **Ethereum**, with smart contracts handling task creation, assignment, and rewards.  
+**The Graph** is used for querying blockchain data, and **IPFS** is used for storing task-related metadata.
+
+### **Smart Contract (Solidity)**
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract TaskDAO {
+    struct Task {
+        uint id;
+        string description;
+        address assignedTo;
+        uint reward;
+        bool completed;
+    }
+
+    mapping(uint => Task) public tasks;
+    uint public taskCount;
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function createTask(string memory description, uint reward) public {
+        require(msg.sender == owner, "Only owner can create tasks");
+        taskCount++;
+        tasks[taskCount] = Task(taskCount, description, address(0), reward, false);
+    }
+
+    function assignTask(uint taskId, address assignee) public {
+        require(tasks[taskId].id != 0, "Task does not exist");
+        tasks[taskId].assignedTo = assignee;
+    }
+
+    function completeTask(uint taskId) public {
+        require(tasks[taskId].assignedTo == msg.sender, "Not assigned to you");
+        require(!tasks[taskId].completed, "Task already completed");
+        tasks[taskId].completed = true;
+        payable(msg.sender).transfer(tasks[taskId].reward);
+    }
+}
+```
