@@ -52,8 +52,8 @@ export default function Navbar() {
               />
             </div>
             <span className="text-xl font-bold">
-              <span className="text-black">Block</span>
-              <span className="text-blue-600">Fusion</span>
+              <span className="text-black">Mrare</span>
+              <span className="text-blue-600">Jimmy</span>
             </span>
           </Link>
 

@@ -24,12 +24,13 @@ const geistMono = Geist_Mono({
 export default function Home() {
   // Hero section configuration
   const heroConfig = {
-    title: "Blockchain Developer & Smart Contract Engineer",
-    subtitle: "Specialized in building secure and efficient decentralized applications with a focus on gas optimization and user experience.",
+    title: "Blockchain Developer, Smart Contract & AI Engineer",
+    subtitle: "Building next-gen decentralized and AI-powered systems with cutting-edge efficiency, optimized gas usage, and breakthrough scalability.",
     achievements: [
-      { id: "ethglobal", label: "🏆 EthGlobal Winner" },
-      { id: "starkhack", label: "🚀 StarkHack Prize" },
-      { id: "hackfs", label: "💎 HackFS Grand Prize" },
+      { id: "ethglobal", label: "🏆 EthGlobal 2023 Winner - WorldCoin zkAuth" },
+      { id: "hackfs", label: "💎 HackFS Prize - ZK + FHE Storage Solution" },
+      { id: "starkhack", label: "🚀 StarkHack Grant Prize - 98% Gas Reduction via Meta Transactions" },
+      { id: "east", label: "🤖 Developed EAST Implementation for LLM Models" }
     ],
     ctaLink: "/projects",
     ctaText: "View Projects",
