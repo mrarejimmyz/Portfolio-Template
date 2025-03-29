@@ -76,7 +76,7 @@ export default function Navbar() {
           {/* Social Icons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
-              href="https://github.com"
+              href="https://github.com/mrarejimmyz"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-800 hover:text-blue-600 transition-colors"
@@ -85,7 +85,7 @@ export default function Navbar() {
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="https://twitter.com"
+              href="https://x.com/HarveReg"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-800 hover:text-blue-600 transition-colors"
@@ -94,7 +94,7 @@ export default function Navbar() {
               <span className="sr-only">Twitter</span>
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/ashish-regmi/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-800 hover:text-blue-600 transition-colors"
@@ -163,7 +163,7 @@ export default function Navbar() {
             {/* Social Icons - Mobile */}
             <div className="flex items-center space-x-4 py-2">
               <Link
-                href="https://github.com"
+                href="https://github.com/mrarejimmyz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-800 hover:text-blue-600 transition-colors"
@@ -171,7 +171,7 @@ export default function Navbar() {
                 <Github size={20} />
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://x.com/HarveReg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-800 hover:text-blue-600 transition-colors"
@@ -179,7 +179,7 @@ export default function Navbar() {
                 <Twitter size={20} />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/ashish-regmi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-800 hover:text-blue-600 transition-colors"

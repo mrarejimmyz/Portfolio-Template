@@ -99,21 +99,21 @@ export default function Home() {
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/mrarejimmyz" 
               className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
               aria-label="GitHub Profile"
             >
               GitHub
             </a>
             <a 
-              href="https://linkedin.com/in/yourusername" 
+              href="https://www.linkedin.com/in/ashish-regmi/" 
               className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
               aria-label="LinkedIn Profile"
             >
               LinkedIn
             </a>
             <a 
-              href="https://twitter.com/yourusername" 
+              href="https://x.com/HarveReg" 
               className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
               aria-label="Twitter Profile"
             >
