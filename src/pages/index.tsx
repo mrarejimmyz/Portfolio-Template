@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Hero from '../components/Hero';
 import ProjectShowcase from '../components/ProjectShowcase';
 import { getFeaturedProjects } from '../data/project';
+import PortfolioFeatures from '../components/PortfolioFeatures';
+import Footer from '@/components/Footer';
 
 // Configure Geist Sans font
 const geistSans = Geist({
@@ -91,38 +93,12 @@ export default function Home() {
             ))}
           </div>
         </section>
+        {/* Portfolio Features Section */}
+        <PortfolioFeatures />
       </main>
       
-      <footer className="py-6 border-t border-gray-200 dark:border-gray-800 mt-16">
-        <div className="container px-4 md:px-6 mx-auto flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} • Built with Next.js and Tailwind CSS
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a 
-              href="https://github.com/mrarejimmyz" 
-              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
-              aria-label="GitHub Profile"
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/ashish-regmi/" 
-              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
-              aria-label="LinkedIn Profile"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="https://x.com/HarveReg" 
-              className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
-              aria-label="Twitter Profile"
-            >
-              Twitter
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
+
     </div>
   );
 }
