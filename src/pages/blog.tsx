@@ -5,7 +5,7 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-
+import emailjs from '@emailjs/browser';
 
 // Define TypeScript interfaces for blog data
 interface BlogPost {
