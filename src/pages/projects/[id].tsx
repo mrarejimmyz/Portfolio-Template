@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Header from '../../components/project/Header';
 import Gallery from '../../components/project/Gallery';
 import CodeSnippet from '../../components/project/CodeSnippet';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import { ProjectDetails, sampleProjects } from '../../data/project';
 import { getAllProjectPaths, getProjectFromMDXSync } from '../../lib/mdx';
@@ -104,7 +105,7 @@ const components = {
  */
 export default function ProjectDetail({ project }: { project: ProjectDetails }) {
   const router = useRouter();
-  const [mdxContent, setMdxContent] = useState<any>(null);
+  const [mdxContent, setMdxContent] = useState<MDXRemoteSerializeResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   
   // Process MDX content on the client side

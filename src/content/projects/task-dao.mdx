@@ -1,75 +1,133 @@
 ---
-title: 'Task DAO'
-description: 'Decentralized autonomous organization for task management'
+title: 'Taks'
+description: 'A decentralized, anonymous job marketplace governed by community-driven justice, empowering the global workforce through blockchain technology.'
 techStack:
   - Ethereum
-  - Solidity
-  - The Graph
-  - React
-  - IPFS
+  - Base Chain
+  - Metamask
+
 images:
-  - '/projects/taskdao-cover.png'
-  - '/projects/taskdao-detail.png'
-githubUrl: 'https://github.com/yourusername/task-dao'
-liveUrl: 'https://taskdao.example.com'
+  - '/projects/taks-cover.png'
+githubUrl: 'https://github.com/13x54n/taks'
+liveUrl: 'disk4kgnpso6idlitddsg47etgbywiduq4mrbthprkxlnp4gpk4x6fid.onion'
 achievements:
-  - 'HackFS Grand Prize'
+  - 'Decentralized Anonymous Marketplace'
+  - 'Community-Governed Dispute Resolution'
+  - 'Reputation-Based Flash Loans'
 ---
 
-# Task DAO
+# Taks
 
-**Task DAO** is a decentralized platform where communities can organize, assign, and reward tasks through a transparent governance system. It includes voting mechanisms, task verification, and token-based incentives.
+**Taks** revolutionizes the global workforce by creating a decentralized, anonymous job marketplace governed by community-driven justice. Our platform leverages blockchain technology to offer a secure, reputation-based system where anyone can post jobs, get hired, and access financial services without revealing their identity.
 
-## Key Features
+## 🔒 Privacy-First Approach
 
-- **Transparent Governance**: All decisions are made through community voting.
-- **Task Verification**: Ensure tasks are completed as per requirements.
-- **Token-Based Incentives**: Reward contributors with tokens for their efforts.
+In today's digital landscape, privacy has become a luxury. Taks challenges this paradigm by making privacy the foundation of our platform:
 
-## Technical Implementation
+- **Complete Anonymity**: Users can participate in the job market without revealing personal information
+- **Onion Routing**: Accessible via Tor network for enhanced privacy (disk4kgnpso6idlitddsg47etgbywiduq4mrbthprkxlnp4gpk4x6fid.onion)
+- **Zero-Knowledge Proofs**: Verify reputation and credentials without exposing underlying data
+- **Encrypted Communications**: End-to-end encrypted messaging between employers and workers
 
-The platform is built on **Ethereum**, with smart contracts handling task creation, assignment, and rewards.  
-**The Graph** is used for querying blockchain data, and **IPFS** is used for storing task-related metadata.
+## 💼 Decentralized Job Marketplace
 
-### **Smart Contract (Solidity)**
+Our platform creates a borderless employment ecosystem that connects talent with opportunity:
 
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+- **Global Access**: Anyone with internet access can participate, regardless of location or background
+- **No Intermediaries**: Direct connections between employers and workers eliminate middlemen fees
+- **Diverse Opportunities**: From one-time gigs to long-term projects across various industries
+- **Skill-Based Matching**: Advanced algorithms connect the right talent with the right projects
 
-contract TaskDAO {
-    struct Task {
-        uint id;
-        string description;
-        address assignedTo;
-        uint reward;
-        bool completed;
-    }
+## ⚖️ Community-Driven Justice
 
-    mapping(uint => Task) public tasks;
-    uint public taskCount;
-    address public owner;
+Disputes are inevitable in any marketplace. Taks handles conflicts through a revolutionary approach:
 
-    constructor() {
-        owner = msg.sender;
-    }
+- **Decentralized Arbitration**: Community members serve as jurors to resolve disputes
+- **Transparent Process**: All case details and decisions are recorded on the blockchain
+- **Incentivized Fairness**: Jurors are rewarded for consistent, fair judgments
+- **Precedent-Based Learning**: The system learns from previous cases to improve future resolutions
 
-    function createTask(string memory description, uint reward) public {
-        require(msg.sender == owner, "Only owner can create tasks");
-        taskCount++;
-        tasks[taskCount] = Task(taskCount, description, address(0), reward, false);
-    }
+## 🌟 Reputation System
 
-    function assignTask(uint taskId, address assignee) public {
-        require(tasks[taskId].id != 0, "Task does not exist");
-        tasks[taskId].assignedTo = assignee;
-    }
+Trust is the currency of our platform, enabled by our innovative reputation system:
 
-    function completeTask(uint taskId) public {
-        require(tasks[taskId].assignedTo == msg.sender, "Not assigned to you");
-        require(!tasks[taskId].completed, "Task already completed");
-        tasks[taskId].completed = true;
-        payable(msg.sender).transfer(tasks[taskId].reward);
-    }
-}
-```
+- **On-Chain Reputation**: Immutable record of work history and client satisfaction
+- **Multi-Dimensional Scoring**: Ratings across various metrics (quality, communication, timeliness)
+- **Reputation Staking**: Users can stake their reputation on projects they're confident about
+- **Progressive Trust**: New users can build reputation through smaller jobs before accessing premium opportunities
+
+## 💰 Financial Innovation
+
+Taks goes beyond job matching to provide financial tools for the digital workforce:
+
+- **Flash Loans**: Access immediate funds based on reputation score
+- **Escrow Services**: Secure payment holding until work is satisfactorily completed
+- **Micro-Payments**: Support for small, frequent payments for ongoing work
+- **Cross-Border Transactions**: Seamless payments regardless of geographic location
+
+## 🔧 Technical Implementation
+
+Our platform leverages cutting-edge blockchain technology:
+
+### **Base Chain Integration**
+
+We've implemented Base (Coinbase's Layer 2 solution) to provide:
+
+- Faster transaction processing
+- Reduced gas fees
+- Improved scalability
+- Ethereum security guarantees
+
+### **Smart Contract Architecture**
+
+Our system is built on a suite of interconnected smart contracts:
+
+- **TaskContract**: Manages job listings, applications, and completions
+- **ReputationContract**: Tracks user reputation scores and history
+- **DisputeResolutionContract**: Handles the arbitration process
+- **FlashLoanContract**: Provides reputation-based lending functionality
+
+### **Privacy Infrastructure**
+
+To ensure user anonymity:
+
+- Tor network integration for .onion site access
+- Zero-knowledge proofs for credential verification
+- End-to-end encrypted messaging system
+- Decentralized storage for sensitive information
+
+## 🚀 Future Roadmap
+
+Taks is continuously evolving with several exciting developments on the horizon:
+
+- **Mobile Application**: Native apps for iOS and Android
+- **AI-Powered Matching**: Enhanced job-talent matching using machine learning
+- **Cross-Chain Integration**: Support for multiple blockchain ecosystems
+- **Decentralized Identity Solutions**: Advanced privacy-preserving identity verification
+- **Specialized Marketplaces**: Dedicated platforms for specific industries and skill sets
+
+## 👥 Community Governance
+
+The Taks platform is governed entirely by its community:
+
+- **DAO Structure**: Token holders vote on platform changes and upgrades
+- **Transparent Treasury**: Community-controlled funds for platform development
+- **Open Proposal System**: Anyone can suggest improvements or new features
+- **Regular Governance Calls**: Community discussions on platform direction
+
+## 🌐 Global Impact
+
+Taks is more than a platform—it's a movement to democratize access to work:
+
+- **Breaking Geographic Barriers**: Connecting talent to opportunity regardless of location
+- **Financial Inclusion**: Providing economic tools to the unbanked and underbanked
+- **Skill-Based Meritocracy**: Creating a true meritocracy based on skills and reputation
+- **Empowering Vulnerable Populations**: Offering work opportunities to those who need privacy protection
+
+## 🔗 Resources
+
+- [GitHub Repository](https://github.com/13x54n/taks)
+- [Demo Video](https://youtu.be/RIWIpXOGiSA)
+- [Tor Access](disk4kgnpso6idlitddsg47etgbywiduq4mrbthprkxlnp4gpk4x6fid.onion)
+
+Join us in revolutionizing the future of work—where privacy, trust, and community governance create opportunities for everyone, everywhere.

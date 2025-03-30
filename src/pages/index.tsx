@@ -88,7 +88,7 @@ export default function Home({ featuredProjects }: HomeProps) {
         {/* Featured Projects Section */}
         <ProjectShowcase
           title="Featured Projects"
-          description="A selection of my blockchain development work showcasing smart contracts, dApps, and Web3 integrations."
+          description="A selection of my blockchain and AI development work showcasing smart contracts, dApps, Web3 integrations, and AI-powered solutions."
           projects={featuredProjects}
           viewAllLink="/projects"
         />

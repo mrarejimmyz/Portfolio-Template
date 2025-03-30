@@ -1,0 +1,144 @@
+---
+title: 'P2PLend'
+description: 'A revolutionary peer-to-peer lending platform that connects borrowers directly with lenders, eliminating banks as intermediaries and leveraging World ID for secure credit verification.'
+techStack:
+  - Python
+  - Flask
+  - PostgreSQL
+  - React
+  - Apollo Client
+  - GraphQL
+  - World ID API
+
+images:
+  - '/projects/p2plend-cover.png'
+githubUrl: 'https://github.com/pratikdahal105/Everest_hakathon'
+liveUrl: 'https://ethglobal.com/showcase/p2plend-d8bnd'
+achievements:
+  - 'ETHGlobal Waterloo Participant'
+  - '🔑 Worldcoin — Best Sign in with Worldcoin Winner'
+---
+
+# P2PLend
+
+**P2PLend** is a groundbreaking peer-to-peer lending platform that empowers borrowers to access funds directly from lenders, completely bypassing traditional banking institutions. By integrating World ID's robust credit verification system, we ensure secure lending while offering lower interest rates for verified borrowers.
+
+## 🌟 Project Overview
+
+In today's financial landscape, traditional borrowing processes involve extensive paperwork, long waiting periods, and interactions with intermediaries like banks that impose high interest rates and inflexible terms. P2PLend disrupts this model by creating a decentralized lending environment where individuals can access capital directly from peers willing to lend.
+
+Our platform leverages World ID for credit assessment and verification, adding a crucial layer of security and trust to the P2P lending ecosystem. This innovative approach not only mitigates risk for lenders but also rewards verified borrowers with more competitive interest rates.
+
+## 🔑 Key Features
+
+- **Direct Peer-to-Peer Lending**: Connect borrowers and lenders without institutional intermediaries
+- **World ID Integration**: Robust identity verification and credit assessment
+- **Competitive Interest Rates**: Lower rates than traditional financial institutions
+- **Enhanced Verification Benefits**: Verified borrowers receive preferential interest rates
+- **Transparent Lending Process**: Clear terms and conditions with no hidden fees
+- **Efficient Matching Algorithm**: Smart pairing of lenders and borrowers based on multiple parameters
+
+## 💻 Technical Implementation
+
+P2PLend combines several cutting-edge technologies to deliver a seamless, secure, and efficient lending experience:
+
+### **Backend Architecture**
+
+Our backend is built with Flask, a lightweight and flexible Python web framework that provides the perfect foundation for our API services. The modular design allows us to maintain clean separation of concerns while ensuring robust performance.
+
+Sample Flask route for loan creation
+@app.route('/api/loans', methods=['POST'])
+@jwt_required
+def create_loan():
+user_id = get_jwt_identity()
+loan_data = request.json
+
+text
+
+# Validate loan request
+
+if not validate_loan_request(loan_data):
+return jsonify({"error": "Invalid loan parameters"}), 400
+
+# Check World ID verification status
+
+world_id_status = check_world_id_verification(user_id)
+
+# Calculate interest rate based on verification status
+
+interest_rate = calculate_interest_rate(loan_data['amount'],
+loan_data['term'],
+world_id_status)
+
+# Create loan in database
+
+loan_id = db.create_loan(user_id, loan_data, interest_rate)
+
+return jsonify({"loan_id": loan_id, "interest_rate": interest_rate}), 201
+text
+
+For data persistence, we use PostgreSQL, a powerful object-relational database system that ensures data integrity and supports complex queries for our matching algorithm.
+
+### **Frontend Experience**
+
+The frontend is developed with React, creating a responsive and intuitive user interface. Component-based architecture allows for reusable UI elements and simplified state management.
+
+Apollo Client handles GraphQL communication, providing efficient data fetching with intelligent caching to minimize network requests and improve performance.
+
+### **API Communication**
+
+GraphQL serves as our primary API communication layer, offering significant advantages over traditional REST APIs:
+
+- Clients specify exactly what data they need
+- Reduced network traffic with precise data requests
+- Single endpoint for all data operations
+- Strong typing and self-documenting API
+
+### **World ID Integration**
+
+The integration with World ID API is central to our platform's security model:
+
+- Secure identity verification
+- Credit assessment without exposing sensitive personal data
+- Risk mitigation for lenders
+- Preferential rates for verified borrowers
+
+## 🔧 Innovative Solutions
+
+The most innovative aspect of P2PLend is our custom loan matching algorithm. This intelligent system considers multiple parameters:
+
+- Loan amount requested
+- Desired interest rate
+- Repayment period
+- Borrower's creditworthiness via World ID
+- Lender's risk tolerance and preferences
+
+This sophisticated matching ensures optimal pairing of lenders and borrowers, creating a personalized lending experience that benefits all parties.
+
+## 🚀 Impact & Benefits
+
+P2PLend transforms the lending landscape by:
+
+- **Democratizing Access to Capital**: Making loans accessible to more people
+- **Reducing Borrowing Costs**: Lower interest rates through direct peer connections
+- **Enhancing Financial Inclusion**: Providing alternatives to traditional banking
+- **Promoting Responsible Lending**: Using World ID verification to ensure creditworthiness
+- **Creating Investment Opportunities**: Allowing individuals to earn returns by lending directly
+
+## 🏆 Recognition
+
+P2PLend was created at ETHGlobal Waterloo and won the prestigious "🔑 Worldcoin — Best Sign in with Worldcoin" award, recognizing our innovative integration of World ID for secure identity verification in financial services.
+
+## 👥 Future Development
+
+Our roadmap includes several exciting enhancements:
+
+- **Mobile Application**: Native iOS and Android apps for on-the-go lending
+- **Smart Contract Integration**: Blockchain-based loan agreements for additional security
+- **Expanded Verification Options**: Additional identity verification methods
+- **Secondary Market**: Allowing lenders to sell their loan positions
+- **Cross-Border Lending**: Facilitating international P2P loans
+
+## 🌐 Conclusion
+
+P2PLend represents a paradigm shift in financial services, creating a future where lending is more accessible, transparent, and fair. By leveraging modern technology and innovative verification systems, we're empowering individuals to take control of their financial lives while fostering an environment of financial inclusivity.

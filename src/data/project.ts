@@ -101,7 +101,7 @@ export function getAllProjectsSync(): ProjectDetails[] {
 }
 
 export function getFeaturedProjectsSync(): Project[] {
-  const featuredIds = ["ethglobal-winner", "solana-monitor", "task-dao"];
+  const featuredIds = ["ai-secure-fund-dao", "prophecy-jimpsons", "east-llm"];
   return featuredIds
     .map(id => getProjectDataSync(id))
     .filter((project): project is ProjectDetails => project !== null)
