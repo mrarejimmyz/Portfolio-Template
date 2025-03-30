@@ -5,7 +5,7 @@ import Hero from '../components/Hero';
 import ProjectShowcase from '../components/ProjectShowcase';
 import PortfolioFeatures from '../components/PortfolioFeatures';
 import Footer from '@/components/Footer';
-import { getFeaturedProjects, Project } from '../data/project';
+import { getFeaturedProjectsSync, Project } from '../data/project';
 
 // Configure Geist Sans font
 const geistSans = Geist({
@@ -127,7 +127,7 @@ export default function Home({ featuredProjects }: HomeProps) {
 
 // Fetch featured projects at build time
 export async function getStaticProps() {
-  const featuredProjects = getFeaturedProjects();
+  const featuredProjects = getFeaturedProjectsSync();
   return {
     props: {
       featuredProjects,

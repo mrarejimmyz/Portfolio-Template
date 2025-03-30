@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 
-// Ensure that getAllProjects is exported from the data file.
-// If not, either export it or adjust the import accordingly.
-import { getAllProjects } from '../../data/project';
+// Import the synchronous version for static site generation
+import { getAllProjectsSync } from '../../data/project';
+
 
 interface Project {
   id: string;
@@ -13,6 +13,8 @@ interface Project {
   description: string;
   techStack: string[];
   images: string[];
+  githubUrl: string;
+  liveUrl?: string;
 }
 
 interface ProjectsProps {
@@ -38,8 +40,6 @@ export default function Projects({ projects }: ProjectsProps) {
         <title>Projects | Blockchain Developer Portfolio</title>
         <meta name="description" content="Explore my blockchain development projects, including smart contracts, dApps, and Web3 integrations." />
       </Head>
-
-  
 
       <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <header className="mb-12 text-center">
@@ -88,7 +88,7 @@ export default function Projects({ projects }: ProjectsProps) {
               className="group block bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
             >
               <div className="relative h-48 w-full">
-                {project.images.length > 0 ? (
+                {project.images && project.images.length > 0 ? (
                   <Image
                     src={project.images[0]}
                     alt={project.title}
@@ -110,7 +110,7 @@ export default function Projects({ projects }: ProjectsProps) {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.techStack.slice(0, 3).map((tech: string, index: number) => (
+                  {project.techStack && project.techStack.slice(0, 3).map((tech: string, index: number) => (
                     <span
                       key={index}
                       className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-medium"
@@ -118,7 +118,7 @@ export default function Projects({ projects }: ProjectsProps) {
                       {tech}
                     </span>
                   ))}
-                  {project.techStack.length > 3 && (
+                  {project.techStack && project.techStack.length > 3 && (
                     <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-medium">
                       +{project.techStack.length - 3} more
                     </span>
@@ -149,9 +149,9 @@ export default function Projects({ projects }: ProjectsProps) {
   );
 }
 
-export async function getStaticProps() {
-  // Ensure that getAllProjects returns data in the expected Project format
-  const projects = getAllProjects() as Project[];
+export function getStaticProps() {
+  // Use the synchronous version for static site generation
+  const projects = getAllProjectsSync();
   
   return {
     props: {

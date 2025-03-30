@@ -6,13 +6,11 @@ import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Image from 'next/image';
 
-
 import Header from '../../components/project/Header';
-// import TechStack from '../../components/project/TechStack';
 import Gallery from '../../components/project/Gallery';
 import CodeSnippet from '../../components/project/CodeSnippet';
 
-import { ProjectDetails, getProjectData } from '../../data/project';
+import { ProjectDetails, sampleProjects } from '../../data/project';
 import { getAllProjectPaths, getProjectFromMDX } from '../../lib/mdx';
 
 /**
@@ -126,8 +124,6 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
         )}
       </Head>
 
-
-
       <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Back button */}
         <Link 
@@ -208,7 +204,8 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   
   // If no MDX file, use sample data
   if (!project) {
-    project = getProjectData(id);
+    // Use the synchronous version for static site generation
+    project = sampleProjects[id] || null;
   }
   
   // If project still not found, return 404
@@ -222,7 +219,5 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     props: {
       project,
     },
-    // Revalidate once per day
-    // revalidate: 86400,
   };
 }
