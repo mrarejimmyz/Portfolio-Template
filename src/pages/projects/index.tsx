@@ -45,7 +45,7 @@ export default function Projects({ projects }: ProjectsProps) {
         <header className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-4">Projects</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A collection of my blockchain development work, showcasing smart contracts, decentralized applications, and Web3 integrations.
+          A collection of my blockchain and AI projects showcasing smart contracts, decentralized applications, Web3 integrations, and AI-driven solutions. My work spans Ethereum, Solana, and Starknet, featuring predictive NFTs, efficient LLM training, and privacy-enhancing cryptography.
           </p>
         </header>
 
