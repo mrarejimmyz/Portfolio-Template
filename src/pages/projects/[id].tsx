@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote';
@@ -102,6 +104,32 @@ const components = {
  */
 export default function ProjectDetail({ project }: { project: ProjectDetails }) {
   const router = useRouter();
+  const [mdxContent, setMdxContent] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Process MDX content on the client side
+  useEffect(() => {
+    async function processMdx() {
+      if (project.rawContent) {
+        setIsLoading(true);
+        try {
+          const serialized = await serialize(project.rawContent, {
+            mdxOptions: {
+              remarkPlugins: [],
+              rehypePlugins: [],
+            },
+          });
+          setMdxContent(serialized);
+        } catch (error) {
+          console.error('Error serializing MDX:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    }
+    
+    processMdx();
+  }, [project.rawContent]);
   
   // If page is not yet generated, show loading state
   if (router.isFallback) {
@@ -144,10 +172,18 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
 
         {/* Project description - rendered from MDX if available */}
         <div className="mb-12">
-          {project.content ? (
-            <article className="prose prose-lg dark:prose-invert max-w-none">
-              <MDXRemote {...project.content} components={components} />
-            </article>
+          {project.rawContent ? (
+            isLoading ? (
+              <div className="flex justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900 dark:border-white"></div>
+              </div>
+            ) : mdxContent ? (
+              <article className="prose prose-lg dark:prose-invert max-w-none">
+                <MDXRemote {...mdxContent} components={components} />
+              </article>
+            ) : (
+              <p>Error loading content.</p>
+            )
           ) : (
             <>
               <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
@@ -169,7 +205,7 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
         </div>
 
         {/* Code snippet */}
-        {project.codeSnippet && !project.content && (
+        {project.codeSnippet && !mdxContent && (
           <CodeSnippet 
             code={project.codeSnippet} 
             language="javascript" 
@@ -184,7 +220,7 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
 /**
  * Get static paths for all projects
  */
-export async function getStaticPaths() {
+export function getStaticPaths() {
   console.log('[getStaticPaths] Starting to get all project paths');
   const paths = getAllProjectPaths();
   console.log('[getStaticPaths] Paths retrieved:', paths);
@@ -198,18 +234,16 @@ export async function getStaticPaths() {
 /**
  * Get static props for a specific project
  */
-export async function getStaticProps({ params }: { params: { id: string } }) {
+export function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
   console.log(`[getStaticProps] Starting to get static props for project: ${id}`);
   
-  // Try to get project from MDX file first
-  console.log(`[getStaticProps] Attempting to get project from MDX file: ${id}`);
-  let project = await getProjectFromMDXSync(id);
+  // Get project from MDX file
+  let project = getProjectFromMDXSync(id);
   
   // If no MDX file, use sample data
   if (!project) {
     console.log(`[getStaticProps] MDX file not found for ${id}, using sample data`);
-    // Use the synchronous version for static site generation
     project = sampleProjects[id] || null;
   } else {
     console.log(`[getStaticProps] Successfully loaded project from MDX: ${id}`);
@@ -230,4 +264,3 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     },
   };
 }
-
