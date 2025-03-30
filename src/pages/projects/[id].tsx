@@ -11,7 +11,7 @@ import Gallery from '../../components/project/Gallery';
 import CodeSnippet from '../../components/project/CodeSnippet';
 
 import { ProjectDetails, sampleProjects } from '../../data/project';
-import { getAllProjectPaths, getProjectFromMDX } from '../../lib/mdx';
+import { getAllProjectPaths, getProjectFromMDXSync } from '../../lib/mdx';
 
 /**
  * MDX components for rendering project case studies
@@ -185,7 +185,9 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
  * Get static paths for all projects
  */
 export async function getStaticPaths() {
+  console.log('[getStaticPaths] Starting to get all project paths');
   const paths = getAllProjectPaths();
+  console.log('[getStaticPaths] Paths retrieved:', paths);
   
   return {
     paths,
@@ -198,26 +200,34 @@ export async function getStaticPaths() {
  */
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
+  console.log(`[getStaticProps] Starting to get static props for project: ${id}`);
   
   // Try to get project from MDX file first
-  let project = await getProjectFromMDX(id);
+  console.log(`[getStaticProps] Attempting to get project from MDX file: ${id}`);
+  let project = await getProjectFromMDXSync(id);
   
   // If no MDX file, use sample data
   if (!project) {
+    console.log(`[getStaticProps] MDX file not found for ${id}, using sample data`);
     // Use the synchronous version for static site generation
     project = sampleProjects[id] || null;
+  } else {
+    console.log(`[getStaticProps] Successfully loaded project from MDX: ${id}`);
   }
   
   // If project still not found, return 404
   if (!project) {
+    console.log(`[getStaticProps] Project not found: ${id}`);
     return {
       notFound: true,
     };
   }
 
+  console.log(`[getStaticProps] Successfully retrieved project data for: ${id}`);
   return {
     props: {
       project,
     },
   };
 }
+
