@@ -1,3 +1,5 @@
+https://tinyurl.com/MAshishR
+
 # Portfolio with Interactive Navigator Chatbot
 
 An interactive Next.js-powered portfolio with an AI chatbot assistant, deployed on IPFS for a fully decentralized experience. This project combines a professional portfolio showcase with an innovative navigation system.
