@@ -79,3 +79,16 @@
 .font-mono {
   font-family: var(--font-geist-mono, ui-monospace, monospace);
 }
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}

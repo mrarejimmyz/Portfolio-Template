@@ -46,6 +46,7 @@ export default function Home({ featuredProjects }: HomeProps) {
     secondaryCtaLink: '/resume.pdf',
     secondaryCtaText: 'Download Resume',
     profileImage: '/profile.jpg',
+    ipfsLink: 'https://bafybeidbspmbbozdff5d4rrafmvhnpl2ckcabu5wtbdrkuvchsca5cicl4.ipfs.dweb.link',
   };
 
   // Tech stack items to be displayed as badges

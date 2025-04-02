@@ -19,6 +19,7 @@ interface HeroProps {
   secondaryCtaLink?: string;
   secondaryCtaText?: string;
   profileImage?: string;
+  ipfsLink?: string;
 }
 
 /**
@@ -38,6 +39,7 @@ export default function Hero({
   secondaryCtaLink,
   secondaryCtaText,
   profileImage = '/profile.jpg',
+  ipfsLink,
 }: HeroProps): React.JSX.Element {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 animate-fade-in">
@@ -112,6 +114,51 @@ export default function Hero({
                 </Link>
               )}
             </div>
+
+            {/* IPFS Link */}
+            {ipfsLink && (
+              <div className="mt-8">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30 transition-all duration-300 transform hover:scale-105 hover:shadow-md">
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Decentralized version available on</span>
+                  <a
+                    href={ipfsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono font-semibold text-indigo-600 dark:text-indigo-400 flex items-center group-hover:animate-pulse"
+                  >
+                    <svg 
+                      className="w-4 h-4 mr-1 inline-block group-hover:animate-spin-slow" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path 
+                        d="M12 2L2 7L12 12L22 7L12 2Z" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      />
+                      <path 
+                        d="M2 17L12 22L22 17" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      />
+                      <path 
+                        d="M2 12L12 17L22 12" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      />
+                    </svg>
+                    IPFS
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
