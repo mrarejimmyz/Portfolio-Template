@@ -115,19 +115,30 @@ export default function Hero({
               )}
             </div>
 
-            {/* IPFS Link */}
+           {/* IPFS Link */}
             {ipfsLink && (
               <div className="mt-8">
-                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30 transition-all duration-300 transform hover:scale-105 hover:shadow-md">
-                  <span className="text-sm text-gray-600 dark:text-gray-300">Decentralized version available on</span>
+                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30 transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden group">
+                  {/* Background pulse effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-200/0 via-indigo-300/30 to-purple-300/0 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-300"></div>
+                  
+                  {/* Animated particles */}
+                  <div className="absolute -inset-1 opacity-0 group-hover:opacity-100">
+                    <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-indigo-500 animate-ping"></div>
+                    <div className="absolute top-3/4 left-1/3 w-1 h-1 rounded-full bg-purple-500 animate-ping" style={{animationDelay: '0.5s'}}></div>
+                    <div className="absolute top-1/2 right-1/4 w-1 h-1 rounded-full bg-blue-500 animate-ping" style={{animationDelay: '0.7s'}}></div>
+                    <div className="absolute bottom-1/4 right-1/3 w-1 h-1 rounded-full bg-indigo-500 animate-ping" style={{animationDelay: '1s'}}></div>
+                  </div>
+                  
+                  <span className="text-sm text-gray-600 dark:text-gray-300 relative">Decentralized version available on</span>
                   <a
                     href={ipfsLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono font-semibold text-indigo-600 dark:text-indigo-400 flex items-center group-hover:animate-pulse"
+                    className="font-mono font-semibold text-indigo-600 dark:text-indigo-400 flex items-center relative"
                   >
                     <svg 
-                      className="w-4 h-4 mr-1 inline-block group-hover:animate-spin-slow" 
+                      className="w-4 h-4 mr-1 inline-block transform group-hover:animate-spin-slow" 
                       viewBox="0 0 24 24" 
                       fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
@@ -138,23 +149,31 @@ export default function Hero({
                         strokeWidth="2" 
                         strokeLinecap="round" 
                         strokeLinejoin="round" 
+                        className="group-hover:stroke-indigo-500 transition-colors duration-300"
                       />
                       <path 
                         d="M2 17L12 22L22 17" 
                         stroke="currentColor" 
                         strokeWidth="2" 
                         strokeLinecap="round" 
-                        strokeLinejoin="round" 
+                        strokeLinejoin="round"
+                        className="group-hover:stroke-blue-500 transition-colors duration-300" 
                       />
                       <path 
                         d="M2 12L12 17L22 12" 
                         stroke="currentColor" 
                         strokeWidth="2" 
                         strokeLinecap="round" 
-                        strokeLinejoin="round" 
+                        strokeLinejoin="round"
+                        className="group-hover:stroke-purple-500 transition-colors duration-300" 
                       />
                     </svg>
-                    IPFS
+                    <span className="relative">
+                      <span className="group-hover:animate-bounce inline-block" style={{animationDelay: '0s'}}>I</span>
+                      <span className="group-hover:animate-bounce inline-block" style={{animationDelay: '0.1s'}}>P</span>
+                      <span className="group-hover:animate-bounce inline-block" style={{animationDelay: '0.2s'}}>F</span>
+                      <span className="group-hover:animate-bounce inline-block" style={{animationDelay: '0.3s'}}>S</span>
+                    </span>
                   </a>
                 </div>
               </div>
