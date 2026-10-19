@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
@@ -11,8 +10,6 @@ import Image from 'next/image';
 import Header from '../../components/project/Header';
 import Gallery from '../../components/project/Gallery';
 import CodeSnippet from '../../components/project/CodeSnippet';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 import { ProjectDetails, sampleProjects } from '../../data/project';
 import { getAllProjectPaths, getProjectFromMDXSync } from '../../lib/mdx';
 
@@ -105,33 +102,6 @@ const components = {
  */
 export default function ProjectDetail({ project }: { project: ProjectDetails }) {
   const router = useRouter();
-  const [mdxContent, setMdxContent] = useState<MDXRemoteSerializeResult | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  
-  // Process MDX content on the client side
-  useEffect(() => {
-    async function processMdx() {
-      if (project.rawContent) {
-        setIsLoading(true);
-        try {
-          const serialized = await serialize(project.rawContent, {
-            mdxOptions: {
-              remarkPlugins: [],
-              rehypePlugins: [],
-            },
-          });
-          setMdxContent(serialized);
-        } catch (error) {
-          console.error('Error serializing MDX:', error);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    }
-    
-    processMdx();
-  }, [project.rawContent]);
-  
   // If page is not yet generated, show loading state
   if (router.isFallback) {
     return (
@@ -144,7 +114,7 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
   return (
     <>
       <Head>
-        <title>{project.title} | Blockchain Developer Portfolio</title>
+        <title>{project.title} | Ashish Regmi Portfolio</title>
         <meta name="description" content={project.description} />
         <meta property="og:title" content={`${project.title} | Portfolio`} />
         <meta property="og:description" content={project.description} />
@@ -173,18 +143,10 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
 
         {/* Project description - rendered from MDX if available */}
         <div className="mb-12">
-          {project.rawContent ? (
-            isLoading ? (
-              <div className="flex justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900 dark:border-white"></div>
-              </div>
-            ) : mdxContent ? (
+          {project.content ? (
               <article className="prose prose-lg dark:prose-invert max-w-none">
-                <MDXRemote {...mdxContent} components={components} />
+                <MDXRemote {...project.content} components={components} />
               </article>
-            ) : (
-              <p>Error loading content.</p>
-            )
           ) : (
             <>
               <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
@@ -206,7 +168,7 @@ export default function ProjectDetail({ project }: { project: ProjectDetails }) 
         </div>
 
         {/* Code snippet */}
-        {project.codeSnippet && !mdxContent && (
+        {project.codeSnippet && !project.content && (
           <CodeSnippet 
             code={project.codeSnippet} 
             language="javascript" 
@@ -235,7 +197,7 @@ export function getStaticPaths() {
 /**
  * Get static props for a specific project
  */
-export function getStaticProps({ params }: { params: { id: string } }) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
   console.log(`[getStaticProps] Starting to get static props for project: ${id}`);
   
@@ -258,10 +220,23 @@ export function getStaticProps({ params }: { params: { id: string } }) {
     };
   }
 
+  const { rawContent, ...projectProps } = project;
+  const content = rawContent
+    ? await serialize(rawContent, {
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        },
+      })
+    : undefined;
+
   console.log(`[getStaticProps] Successfully retrieved project data for: ${id}`);
   return {
     props: {
-      project,
+      project: {
+        ...projectProps,
+        ...(content ? { content } : {}),
+      },
     },
   };
 }

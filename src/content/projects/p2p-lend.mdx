@@ -1,27 +1,22 @@
 ---
 title: 'P2PLend'
-description: 'A revolutionary peer-to-peer lending platform that connects borrowers directly with lenders, eliminating banks as intermediaries and leveraging World ID for secure credit verification.'
+description: 'Peer-to-peer lending platform with World ID credit verification. Best Sign in with Worldcoin App, ETHGlobal Waterloo 2023.'
 techStack:
   - Python
   - Flask
   - PostgreSQL
-  - React
-  - Apollo Client
   - GraphQL
-  - World ID API
+  - React
 
 images:
   - '/projects/p2plend-cover.png'
 githubUrl: 'https://github.com/pratikdahal105/Everest_hakathon'
 liveUrl: 'https://ethglobal.com/showcase/p2plend-d8bnd'
 achievements:
-  - 'ETHGlobal Waterloo Participant'
-  - '🔑 Worldcoin — Best Sign in with Worldcoin Winner'
+  - 'Best Sign in with Worldcoin App, ETHGlobal Waterloo 2023'
 ---
 
-# P2PLend
-
-**P2PLend** is a groundbreaking peer-to-peer lending platform that empowers borrowers to access funds directly from lenders, completely bypassing traditional banking institutions. By integrating World ID's robust credit verification system, we ensure secure lending while offering lower interest rates for verified borrowers.
+**P2PLend** is a peer-to-peer lending platform with World ID credit verification. It won Best Sign in with Worldcoin App at ETHGlobal Waterloo 2023.
 
 ## 🌟 Project Overview
 
@@ -46,36 +41,28 @@ P2PLend combines several cutting-edge technologies to deliver a seamless, secure
 
 Our backend is built with Flask, a lightweight and flexible Python web framework that provides the perfect foundation for our API services. The modular design allows us to maintain clean separation of concerns while ensuring robust performance.
 
-Sample Flask route for loan creation
+Sample Flask route for loan creation:
+
+```python
 @app.route('/api/loans', methods=['POST'])
 @jwt_required
 def create_loan():
-user_id = get_jwt_identity()
-loan_data = request.json
+    user_id = get_jwt_identity()
+    loan_data = request.json
 
-text
+    if not validate_loan_request(loan_data):
+        return jsonify({"error": "Invalid loan parameters"}), 400
 
-# Validate loan request
+    world_id_status = check_world_id_verification(user_id)
+    interest_rate = calculate_interest_rate(
+        loan_data['amount'],
+        loan_data['term'],
+        world_id_status,
+    )
+    loan_id = db.create_loan(user_id, loan_data, interest_rate)
 
-if not validate_loan_request(loan_data):
-return jsonify({"error": "Invalid loan parameters"}), 400
-
-# Check World ID verification status
-
-world_id_status = check_world_id_verification(user_id)
-
-# Calculate interest rate based on verification status
-
-interest_rate = calculate_interest_rate(loan_data['amount'],
-loan_data['term'],
-world_id_status)
-
-# Create loan in database
-
-loan_id = db.create_loan(user_id, loan_data, interest_rate)
-
-return jsonify({"loan_id": loan_id, "interest_rate": interest_rate}), 201
-text
+    return jsonify({"loan_id": loan_id, "interest_rate": interest_rate}), 201
+```
 
 For data persistence, we use PostgreSQL, a powerful object-relational database system that ensures data integrity and supports complex queries for our matching algorithm.
 
@@ -127,7 +114,7 @@ P2PLend transforms the lending landscape by:
 
 ## 🏆 Recognition
 
-P2PLend was created at ETHGlobal Waterloo and won the prestigious "🔑 Worldcoin — Best Sign in with Worldcoin" award, recognizing our innovative integration of World ID for secure identity verification in financial services.
+P2PLend was created at ETHGlobal Waterloo and won Best Sign in with Worldcoin App, recognizing its use of World ID for identity verification in financial services.
 
 ## 👥 Future Development
 
