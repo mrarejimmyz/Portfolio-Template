@@ -34,8 +34,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-sm py-3" : "bg-white/90 backdrop-blur-sm py-5"
+      className={`sticky top-0 left-0 right-0 z-50 border-b border-slate-100 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-sm py-3" : "bg-white/95 backdrop-blur-sm py-4"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -51,9 +51,9 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="text-xl font-bold">
-              <span className="text-black">Mrare</span>
-              <span className="text-blue-600">Jimmy</span>
+            <span className="flex flex-col text-base font-bold leading-tight">
+              <span className="text-black">Ashish Regmi</span>
+              <span className="text-xs font-normal text-gray-500">aka Mrare Jimmy</span>
             </span>
           </Link>
 
@@ -65,8 +65,8 @@ export default function Navbar() {
             <Link href="/projects" className={`transition-colors ${isActive('/projects')}`}>
               Projects
             </Link>
-            <Link href="/blog" className={`transition-colors ${isActive('/blog')}`}>
-              Blog
+            <Link href="/#experience" className="text-gray-800 hover:text-blue-600 font-medium transition-colors">
+              Experience
             </Link>
             <Link href="/contact" className={`transition-colors ${isActive('/contact')}`}>
               Contact
@@ -145,12 +145,12 @@ export default function Navbar() {
             >
               Projects
             </Link>
-            <Link 
-              href="/blog" 
-              className={`py-2 transition-colors ${isActive('/blog')}`}
+            <Link
+              href="/#experience"
+              className="py-2 text-gray-800 hover:text-blue-600 font-medium transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Blog
+              Experience
             </Link>
             <Link 
               href="/contact" 

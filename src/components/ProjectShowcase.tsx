@@ -9,7 +9,7 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
   githubUrl?: string;
   demoUrl?: string;
   featured?: boolean;
@@ -43,12 +43,12 @@ export default function ProjectShowcase({
   const displayedProjects = limit ? projects.slice(0, limit) : projects;
   
   return (
-    <section className="space-y-8 max-w-6xl mx-auto">
+    <section className="mx-auto max-w-6xl space-y-7">
       <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2">{title}</h2>
+          <h2 className="mb-2 text-2xl font-bold text-slate-950 sm:text-3xl">{title}</h2>
           {description && (
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
+            <p className="max-w-2xl leading-relaxed text-slate-600">
               {description}
             </p>
           )}
@@ -68,7 +68,7 @@ export default function ProjectShowcase({
       </div>
       
       {/* Projects grid */}
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {displayedProjects.map((project) => (
           <ProjectCard
             key={project.id}

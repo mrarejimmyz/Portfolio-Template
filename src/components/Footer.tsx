@@ -29,14 +29,13 @@ export default function Footer() {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
             <span className="text-2xl font-bold">
-                <span className="text-black dark:text-white">mrare jimmys </span>
-                <span className="text-blue-600">Block Fusion</span>
+                <span className="text-black dark:text-white">Ashish Regmi</span>
             </span>
             </motion.div>
 
           {/* Description */}
           <p className="text-center text-gray-600 dark:text-gray-300 max-w-lg mb-8">
-            Pushing the boundaries of Web3 development with decentralized solutions that are fast, secure, and user-friendly.
+            Senior Software Engineer building AI systems, backend infrastructure, and full-stack products in Waterloo, Ontario.
           </p>
 
           {/* Stats Box */}
@@ -49,13 +48,13 @@ export default function Footer() {
             </div>
             <div className="p-4 bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
               <div className="flex flex-col items-center">
-                <span className="text-2xl font-bold text-purple-600">100%</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400">Decentralized</span>
+                <span className="text-2xl font-bold text-purple-600">5x</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Hackathon Awards</span>
               </div>
             </div>
             <div className="p-4 bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
               <div className="flex flex-col items-center">
-                <span className="text-2xl font-bold text-green-600">IPFS</span>
+                <span className="text-2xl font-bold text-green-600">Vercel</span>
                 <span className="text-sm text-gray-500 dark:text-gray-400">Hosting</span>
               </div>
             </div>
@@ -115,7 +114,7 @@ export default function Footer() {
             <span>using</span>
             <span className="inline-flex items-center px-2 py-1 bg-black text-white text-xs rounded mx-1">Next.js</span>
             <span className="inline-flex items-center px-2 py-1 bg-blue-500 text-white text-xs rounded mx-1">Tailwind</span>
-            <span className="inline-flex items-center px-2 py-1 bg-teal-500 text-white text-xs rounded mx-1">IPFS</span>
+            <span className="inline-flex items-center px-2 py-1 bg-teal-500 text-white text-xs rounded mx-1">Vercel</span>
             <span className="inline-flex items-center px-2 py-1 bg-purple-500 text-white text-xs rounded mx-1">Framer</span>
           </p>
         </div>

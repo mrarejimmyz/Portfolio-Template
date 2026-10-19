@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Sparkles } from 'lucide-react';
 
 /**
  * TypeScript interface for project data
@@ -10,7 +11,7 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
   githubUrl?: string;
   demoUrl?: string;
   featured?: boolean;
@@ -35,26 +36,36 @@ export default function ProjectCard({
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <div 
-      className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300"
+    <article
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Project image with hover effect */}
-      <Link href={`/projects/${id}`}>
-        <div className="relative w-full h-48 overflow-hidden">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            style={{ 
-              objectFit: "cover",
-              transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-              transition: 'transform 0.3s ease-in-out'
-            }}
-          />
+      <Link href={`/projects/${id}`} className="block">
+        <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+          {image ? (
+            <Image
+              src={image}
+              alt={title}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              style={{
+                objectFit: "cover",
+                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                transition: 'transform 0.3s ease-in-out'
+              }}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-50 via-white to-violet-100 text-blue-700">
+              <div className="flex flex-col items-center gap-2">
+                <Sparkles className="h-9 w-9" aria-hidden="true" />
+                <span className="text-sm font-semibold">Project overview</span>
+              </div>
+            </div>
+          )}
           {featured && (
-            <span className="absolute top-3 right-3 px-3 py-1 bg-blue-600 text-white text-xs rounded-full">
+            <span className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm">
               Featured
             </span>
           )}
@@ -62,23 +73,23 @@ export default function ProjectCard({
       </Link>
       
       {/* Project details */}
-      <div className="p-5 space-y-3">
-        <Link href={`/projects/${id}`}>
-          <h3 className="text-xl font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+      <div className="flex flex-1 flex-col space-y-3 p-5">
+        <Link href={`/projects/${id}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+          <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-700">
             {title}
           </h3>
         </Link>
         
-        <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
+        <p className="line-clamp-3 text-sm leading-relaxed text-slate-600">
           {description}
         </p>
         
         {/* Tech stack tags */}
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-1">
           {tags.map((tag, idx) => (
             <span 
               key={idx} 
-              className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md text-xs font-mono"
+              className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700"
             >
               {tag}
             </span>
@@ -86,13 +97,13 @@ export default function ProjectCard({
         </div>
         
         {/* Action buttons */}
-        <div className="flex gap-3 pt-4">
+        <div className="mt-auto flex gap-4 border-t border-slate-100 pt-4">
           {githubUrl && (
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-blue-700"
               aria-label={`View ${title} code on GitHub`}
             >
               <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -107,7 +118,7 @@ export default function ProjectCard({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-blue-700"
               aria-label={`View ${title} live demo`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,6 +129,6 @@ export default function ProjectCard({
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
