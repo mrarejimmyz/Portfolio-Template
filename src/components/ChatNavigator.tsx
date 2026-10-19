@@ -86,20 +86,20 @@ export default function ChatNavigator({ highlightedSection }: ChatNavigatorProps
       } else if (lowerMsg.includes('hackathon') || lowerMsg.includes('award') || lowerMsg.includes('win')) {
         setMessages(prev => [...prev, { 
           role: 'assistant', 
-          content: "Ashish has won several prestigious hackathons, including EthGlobal 2023, HackFS Grand Prize, and StarkHack. Would you like to see details?"
+          content: "Ashish's verified awards include Best Sign in with Worldcoin App at ETHGlobal Waterloo 2023, Filecoin Privacy Tools at HackFS 2024, and three StarkHack 2024 prizes for Sunya."
         }]);
         
         setTimeout(() => {
           setMessages(prev => [...prev, { 
             role: 'navigation', 
             content: "View Hackathon Wins",
-            action: () => router.push('/awards')
+            action: () => router.push('/')
           }]);
         }, 500);
       } else if (lowerMsg.includes('ipfs') || lowerMsg.includes('deployment')) {
         setMessages(prev => [...prev, { 
           role: 'assistant', 
-          content: "Ashish recently deployed this portfolio on IPFS, creating a fully decentralized website. Would you like to see how he overcame the challenges?"
+          content: "Ashish's portfolio is hosted on Vercel. An older blog post discusses static hosting on IPFS."
         }]);
         
         setTimeout(() => {
@@ -113,7 +113,7 @@ export default function ChatNavigator({ highlightedSection }: ChatNavigatorProps
         // Generic response for other queries
         setMessages(prev => [...prev, { 
           role: 'assistant', 
-          content: "I can help you explore Ashish's Solana projects, hackathon wins, or IPFS deployment process. What would you like to know more about?"
+          content: "I can help you explore Ashish's projects, experience, and verified hackathon wins. What would you like to know more about?"
         }]);
       }
     }, 600);

@@ -1,8 +1,8 @@
 https://tinyurl.com/MAshishR
 
-# Portfolio with Interactive Navigator Chatbot
+# Ashish Regmi, Senior Software Engineer
 
-An interactive Next.js-powered portfolio with an AI chatbot assistant, deployed on IPFS for a fully decentralized experience. This project combines a professional portfolio showcase with an innovative navigation system.
+An interactive Next.js portfolio showcasing Ashish Regmi's software engineering experience, AI and backend projects, and verified awards. The production site is hosted on Vercel.
 
 ## 🚀 Features
 
@@ -10,7 +10,7 @@ An interactive Next.js-powered portfolio with an AI chatbot assistant, deployed 
 - **Interactive AI Chatbot**: Guides visitors through portfolio sections using natural language
 - **Animated Transitions**: Smooth animations when navigating between sections
 - **Persistent Chat History**: Conversations saved between page navigations using localStorage
-- **Fully Decentralized**: Deployed on IPFS with no server dependencies
+- **Production Hosting**: Deployed on Vercel
 - **Responsive Design**: Seamless experience on both desktop and mobile devices
 - **Project Showcase**: Detailed case studies and project cards
 - **Blog Integration**: MDX support for rich content creation
@@ -23,7 +23,7 @@ An interactive Next.js-powered portfolio with an AI chatbot assistant, deployed 
 - TypeScript
 - TailwindCSS
 - Framer Motion (for animations)
-- IPFS (for decentralized hosting)
+- Vercel
 
 ## 🗂️ Project Structure
 
@@ -69,33 +69,19 @@ portfolio/
 The portfolio highlights various projects including:
 
 - Solana Transaction Monitor with real-time visualization
-- ZK Proof implementations with WorldCoin integration
-- Meta-transaction systems with significant gas optimization
+- P2PLend, winner of Best Sign in with Worldcoin App at ETHGlobal Waterloo 2023
+- HimalayaZkBarrier, Filecoin Privacy Tools winner at HackFS 2024
+- Sunya, triple winner at StarkHack 2024 and Starknet Foundation Seed Grant recipient
 - Multi-chain NFT deployments across Solana, Base, and StarkWare
 
 ## 🤖 Chatbot Navigation
 
 Click the chat icon in the bottom-right corner to start a conversation. Try asking:
 
-- "Tell me about your Solana experience"
+- "Tell me about your project experience"
 - "Show me your hackathon wins"
-- "Explain your IPFS deployment process"
 
 ## 🛠️ Implementation Highlights
-
-### Dynamic Base Tag for IPFS
-
-```javascript
-const scriptTxt = `
-(function () {
-  const { pathname } = window.location
-  const ipfsMatch = /.*\\/Qm\\w{44}\\//.exec(pathname)
-  const base = document.createElement('base')
-  base.href = ipfsMatch ? ipfsMatch : '/'
-  document.head.append(base)
-})();
-`;
-```
 
 ### Persistent Chat History
 
@@ -111,25 +97,25 @@ const [messages, setMessages] = useLocalStorage('chatMessages', [
 2. Install dependencies: `npm install`
 3. Run development server: `npm run dev`
 4. Build for production: `npm run build`
-5. Export static files: `npm run export`
 
 ## 🌐 Deployment
 
-Deployed on IPFS for decentralized hosting:
+The production site is deployed on Vercel:
 
-- [Public IPFS Gateway](https://bafybeig7psijlskmzikljfqpgqrt6m6g4vf7aoctpocfgkc73yhoqsnfcm.ipfs.dweb.link/)
+- [Ashish Regmi Portfolio](https://portfolio-template-theta-eight.vercel.app/)
 
 ## 🏆 Achievements
 
-- EthGlobal 2023 Winner: zkAuth with WorldCoin/Sybil integration (92% Sybil attack reduction)
-- HackFS Grand Prize: ZK+FHE Storage Solution for Filecoin + Protocol Labs
-- StarkHack: Meta transactions with 98% gas reduction
+- Best Sign in with Worldcoin App, ETHGlobal Waterloo 2023 (P2PLend)
+- Filecoin Privacy Tools Winner, HackFS 2024 (HimalayaZkBarrier)
+- Three StarkHack 2024 prizes for Sunya, from Herodotus, Voyager, and Dynamic
+- Starknet Foundation Seed Grant recipient (Sunya)
 
 ## 📬 Contact
 
 - LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashish-regmi)
 - GitHub: [ashishregmi](https://github.com/mrarejimmyz)
-- Email: [mrarejimmy@jimpsons.org](mailto:mrarejimmy@jimpsons.org)
+- Email: [wanemregmi@gmail.com](mailto:wanemregmi@gmail.com)
 
 ## 📄 License
 

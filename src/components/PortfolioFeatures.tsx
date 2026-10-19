@@ -3,7 +3,7 @@ import { FileText, Zap, Globe, Smartphone, Cpu } from 'lucide-react';
 
 const features = [
   { icon: FileText, title: "Compressed Size", description: "Just 1.8 MB after compression and optimization" },
-  { icon: Globe, title: "Fully Decentralized", description: "Deployed on IPFS with no server dependencies" },
+  { icon: Globe, title: "Production Hosted", description: "Deployed on Vercel for reliable global delivery" },
   { icon: Zap, title: "Performance Optimized", description: "Lazy loading and asset optimization" },
   { icon: Smartphone, title: "Responsive Design", description: "Seamless experience on both desktop and mobile" },
   { icon: Cpu, title: "Interactive AI Chatbot", description: "Natural language navigation through portfolio sections" },

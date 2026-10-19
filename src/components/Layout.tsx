@@ -35,8 +35,8 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>Ashish Regmi | Web3 Developer</title>
-        <meta name="description" content="Portfolio of Ashish Regmi, Web3 Developer specializing in Solana, Ethereum, and decentralized applications." />
+        <title>Ashish Regmi | Senior Software Engineer</title>
+        <meta name="description" content="Ashish Regmi, Senior Software Engineer in Waterloo, Ontario. AI agents, backend systems, and full-stack development. 5x hackathon winner." />
       </Head>
       
 

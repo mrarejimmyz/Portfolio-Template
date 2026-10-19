@@ -31,7 +31,7 @@ interface ResponseData {
 export function generateResponse(relevantContent: RelevantContent | null): ResponseData {
   if (!relevantContent) {
     return {
-      text: "I can help you explore Ashish's Solana projects, hackathon wins, or IPFS deployment process. What would you like to know more about?",
+      text: "I can help you explore Ashish's projects, experience, and verified hackathon wins. What would you like to know more about?",
       navigation: null
     };
   }
@@ -49,16 +49,16 @@ export function generateResponse(relevantContent: RelevantContent | null): Respo
       };
       case 'hackathons':
         return {
-          text: `Ashish has won several prestigious hackathons, including ${data.wins?.map((w: { title: string }) => w.title).join(', ') || 'various competitions'}.`,
+          text: `Ashish's verified awards include ${data.wins?.map((w: { title: string }) => w.title).join(', ') || 'multiple hackathon prizes'}.`,
           navigation: {
             text: "View Hackathon Wins",
-            path: "/awards"
+            path: "/"
           }
         };
       
         case 'ipfs':
             return {
-              text: `Ashish recently deployed this portfolio on IPFS: ${data.experience}`,
+              text: `Ashish's portfolio is hosted on Vercel. An older blog post covers IPFS: ${data.experience}`,
               navigation: {
                 text: "View IPFS Case Study",
                 path: data.casestudy?.link || "/blog/ipfs-deployment"
@@ -67,7 +67,7 @@ export function generateResponse(relevantContent: RelevantContent | null): Respo
           
     default:
       return {
-        text: "I can help you explore Ashish's portfolio. Ask me about his Solana experience, hackathon wins, or IPFS deployment process.",
+        text: "I can help you explore Ashish's projects, experience, and verified hackathon wins.",
         navigation: null
       };
   }

@@ -37,7 +37,7 @@ export default function Projects({ projects }: ProjectsProps) {
   return (
     <>
       <Head>
-        <title>Projects | Blockchain Developer Portfolio</title>
+        <title>Projects | Ashish Regmi</title>
         <meta name="description" content="Explore my blockchain development projects, including smart contracts, dApps, and Web3 integrations." />
       </Head>
 

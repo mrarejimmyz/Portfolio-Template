@@ -8,7 +8,7 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
 }
 
 export interface ProjectDetails {
@@ -25,6 +25,15 @@ export interface ProjectDetails {
   content?: MDXRemoteSerializeResult;
   rawContent?: string;
 }
+
+const curatedProjectIds = [
+  'p2p-lend',
+  'sunya',
+  'himalaya-zk-barrier',
+  'avai-agent',
+  'parmanusai',
+  'prophecy-jimpsons',
+];
 
 const projectsDirectory = path.join(process.cwd(), 'src', 'content', 'projects');
 
@@ -95,14 +104,12 @@ export function getProjectDataSync(id: string): ProjectDetails | null {
 }
 
 export function getAllProjectsSync(): ProjectDetails[] {
-  const projectIds = getAllProjectIds().map(({ params }) => params.id);
-  const projects = projectIds.map(id => getProjectDataSync(id));
+  const projects = curatedProjectIds.map(id => getProjectDataSync(id));
   return projects.filter((project): project is ProjectDetails => project !== null);
 }
 
 export function getFeaturedProjectsSync(): Project[] {
-  const featuredIds = ["ai-secure-fund-dao", "prophecy-jimpsons", "east-llm"];
-  return featuredIds
+  return curatedProjectIds
     .map(id => getProjectDataSync(id))
     .filter((project): project is ProjectDetails => project !== null)
     .map<Project>((project) => ({
@@ -110,6 +117,6 @@ export function getFeaturedProjectsSync(): Project[] {
       title: project.title,
       description: project.description,
       tags: project.techStack,
-      image: project.images?.[0] ?? "/images/default.png",
+      ...(project.images?.[0] ? { image: project.images[0] } : {}),
     }));
 }

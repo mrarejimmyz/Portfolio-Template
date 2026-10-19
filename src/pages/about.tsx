@@ -11,15 +11,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-// Define education type
-interface Education {
-  degree: string;
-  institution: string;
-  location: string;
-  year: string;
-  description: string;
-}
-
 // Define skill type
 interface Skill {
   name: string;
@@ -32,24 +23,6 @@ interface Skill {
  * Displays professional background, education, skills, and contact form
  */
 export default function About() {
-  // Education data
-  const education: Education[] = [
-    {
-      degree: "Master of Science in Computer Science",
-      institution: "Stanford University",
-      location: "California, USA",
-      year: "2019-2021",
-      description: "Specialized in Distributed Systems and Blockchain Technology. Thesis on Gas Optimization Techniques for Smart Contracts."
-    },
-    {
-      degree: "Bachelor of Engineering in Computer Science",
-      institution: "Indian Institute of Technology",
-      location: "Delhi, India",
-      year: "2015-2019",
-      description: "Graduated with honors. Research focus on Cryptography and Distributed Computing."
-    }
-  ];
-
   // Skills data for visualization
   const skills: Skill[] = [
     { name: "Solidity", level: 95, category: "Blockchain" },
@@ -78,10 +51,10 @@ export default function About() {
   return (
     <div className={`min-h-screen bg-background text-foreground ${geistSans.variable}`}>
       <Head>
-        <title>About Me | Blockchain Developer</title>
-        <meta name="description" content="Professional background, skills, and education of a specialized blockchain developer and smart contract engineer." />
-        <meta property="og:title" content="About Me | Blockchain Developer Portfolio" />
-        <meta property="og:description" content="Professional background, skills, and education of a specialized blockchain developer and smart contract engineer." />
+        <title>About Ashish Regmi | Senior Software Engineer</title>
+        <meta name="description" content="Ashish Regmi is a Senior Software Engineer building AI systems, backend infrastructure, and full-stack products in Waterloo, Ontario." />
+        <meta property="og:title" content="About Ashish Regmi | Senior Software Engineer" />
+        <meta property="og:description" content="Ashish Regmi is a Senior Software Engineer building AI systems, backend infrastructure, and full-stack products in Waterloo, Ontario." />
       </Head>
 
   
@@ -120,33 +93,16 @@ export default function About() {
               <h1 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h1>
               <div className="prose prose-lg dark:prose-invert">
                 <p>
-                  I am a specialized Blockchain Developer and Smart Contract Engineer with over 5 years of experience in the Web3 space. My expertise lies in building secure, efficient, and user-friendly decentralized applications with a focus on gas optimization and seamless user experiences.
+                  I am a Senior Software Engineer based in Waterloo, Ontario. I build production AI systems, backend infrastructure, and full-stack products. As Lead Developer at ZKward, I work across multi-chain DeFi, automated hedging, AI risk orchestration, and secure Move smart contracts.
                 </p>
                 <p>
-                  Having worked with leading blockchain protocols including Ethereum, Solana, and Layer 2 solutions, I bring a comprehensive understanding of the blockchain ecosystem to every project. My approach combines technical excellence with practical business insights to create solutions that are not only technically sound but also aligned with real-world needs.
+                  My experience includes enterprise backend systems and REST API integrations for financial services, as well as frontend development with React and React Native. I focus on building reliable systems that solve practical problems.
                 </p>
                 <p>
-                  I&apos;m passionate about advancing the adoption of blockchain technology through accessible and secure applications. My work has been recognized at major hackathons, including EthGlobal, StarkHack, and HackFS, where I&apos;ve won multiple prizes for innovative implementations.
+                  My work has earned five hackathon prizes across ETHGlobal Waterloo 2023, HackFS 2024, and StarkHack 2024. I am also a Starknet Foundation Seed Grant recipient.
                 </p>
               </div>
             </div>
-          </div>
-        </section>
-        
-        {/* Education Section */}
-        <section className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Education</h2>
-          <div className="space-y-8">
-            {education.map((edu, index) => (
-              <div key={index} className="border-l-4 border-gray-200 dark:border-gray-700 pl-4 py-2">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                  <h3 className="text-xl font-bold">{edu.degree}</h3>
-                  <span className="text-gray-600 dark:text-gray-400">{edu.year}</span>
-                </div>
-                <p className="text-lg">{edu.institution}, {edu.location}</p>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">{edu.description}</p>
-              </div>
-            ))}
           </div>
         </section>
         

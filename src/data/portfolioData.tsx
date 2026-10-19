@@ -44,22 +44,28 @@ export const portfolioData: Record<PortfolioSection, PortfolioData> = {
   hackathons: {
     wins: [
       {
-        title: "EthGlobal 2023 Winner",
-        description: "World Coin integration with 92% Sybil attack reduction",
+        title: "Best Sign in with Worldcoin App",
+        description: "ETHGlobal Waterloo 2023, P2PLend",
         year: "2023",
-        link: "/awards#ethglobal"
+        link: "/projects/p2p-lend"
       },
       {
-        title: "HackFS Grand Prize",
-        description: "ZK+FHE Storage Solution for Filecoin + Protocol Labs",
+        title: "Filecoin Privacy Tools Winner",
+        description: "HackFS 2024, HimalayaZkBarrier",
         year: "2024",
-        link: "/awards#hackfs"
+        link: "/projects/himalaya-zk-barrier"
       },
       {
-        title: "StarkHack",
-        description: "Meta transactions with 98% gas reduction",
+        title: "Triple Winner, Herodotus, Voyager, and Dynamic",
+        description: "StarkHack 2024, Sunya",
         year: "2024",
-        link: "/awards#starkhack"
+        link: "/projects/sunya"
+      },
+      {
+        title: "Starknet Foundation Seed Grant",
+        description: "Sunya",
+        year: "2024",
+        link: "/projects/sunya"
       }
     ],
     keywords: ["hackathon", "award", "win", "prize", "ethglobal", "hackfs", "starkhack"]
