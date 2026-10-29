@@ -115,7 +115,7 @@ The production site is deployed on Vercel:
 
 - LinkedIn: [Ashish Regmi](https://linkedin.com/in/ashish-regmi)
 - GitHub: [ashishregmi](https://github.com/mrarejimmyz)
-- Email: [wanemregmi@gmail.com](mailto:wanemregmi@gmail.com)
+- Email: [ashish.regmi@zkward.com](mailto:ashish.regmi@zkward.com)
 
 ## 📄 License
 
