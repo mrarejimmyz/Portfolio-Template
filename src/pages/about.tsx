@@ -92,7 +92,7 @@ export default function About() {
               <h1 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h1>
               <div className="prose prose-lg dark:prose-invert">
                 <p>
-                  I am a Senior Software Engineer based in Waterloo, Ontario. I build production AI systems, backend infrastructure, and full-stack products. As Lead Developer at ZKward, I work across multi-chain DeFi, automated hedging, AI risk orchestration, and secure Move smart contracts.
+                  I am a Senior Software Engineer based in Waterloo, Ontario. I build production AI systems, backend infrastructure, and full-stack products. As Lead Developer at ZKward, I work across DeFi on Sui, automated hedging, AI risk orchestration, and secure Move smart contracts.
                 </p>
                 <p>
                   My experience includes enterprise backend systems and REST API integrations for financial services, as well as frontend development with React and React Native. I focus on building reliable systems that solve practical problems.
