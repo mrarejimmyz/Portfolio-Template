@@ -5,8 +5,8 @@ const experience = [
     dates: 'Sep 2025 to Present',
     location: 'Waterloo, Ontario',
     highlights: [
-      'Architected and deployed a multi-chain DeFi platform with automated hedging and ZK-STARK proof attestations on Sui mainnet.',
-      'Built a seven-agent AI risk-orchestration framework that monitors market volatility and adjusts hedging parameters automatically.',
+      'Architected and deployed an AI-managed DeFi platform with automated hedging on Sui mainnet, with every agent action recorded on-chain.',
+      'Built a six-agent AI risk-orchestration framework that monitors market volatility and adjusts hedging parameters automatically.',
       'Write and optimize secure Move smart contracts; led the protocol rebrand end to end.',
     ],
   },
