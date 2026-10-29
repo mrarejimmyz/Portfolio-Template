@@ -48,7 +48,7 @@ export default function Home({ featuredProjects }: HomeProps) {
     tertiaryCtaLink: '/contact',
     tertiaryCtaText: 'Get in Touch',
     contactLinks: [
-      { href: 'mailto:wanemregmi@gmail.com', label: 'wanemregmi@gmail.com' },
+      { href: 'mailto:ashish.regmi@zkward.com', label: 'ashish.regmi@zkward.com' },
       { href: 'tel:+15199039794', label: '+1 519 903 9794' },
       { href: 'https://github.com/mrarejimmyz', label: 'github.com/mrarejimmyz' },
     ],
@@ -57,11 +57,9 @@ export default function Home({ featuredProjects }: HomeProps) {
 
   // Tech stack items to be displayed as badges
   const techStack = [
-    'Rust', // Trending for high-performance systems (e.g., Solana Transaction Monitor)
     'Python', // Popular for backend development and AI integration
     'JavaScript/TypeScript', // In-demand for modern web and full-stack development
     'Solidity', // Primary language for Ethereum smart contracts
-    'ZK Proofs', // Cutting-edge technology for secure, privacy-preserving applications
     'Web3.js', // Essential for interacting with blockchain networks
     'Anchor', // Streamlines Solana smart contract development
     'Solana', // High-performance blockchain gaining momentum
@@ -73,7 +71,6 @@ export default function Home({ featuredProjects }: HomeProps) {
     'IPFS', // Decentralized file storage solution
     'Docker', // Standard tool for containerization and deployment
     'CI/CD', // Best practices for continuous integration and deployment
-    'Apex', // Specialized for Salesforce development (niche but valuable)
   ];
 
   return (
