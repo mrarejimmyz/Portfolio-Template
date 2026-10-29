@@ -27,7 +27,6 @@ export default function About() {
   const skills: Skill[] = [
     { name: "Solidity", level: 95, category: "Blockchain" },
     { name: "Ethereum", level: 90, category: "Blockchain" },
-    { name: "Rust", level: 75, category: "Blockchain" },
     { name: "Web3.js", level: 85, category: "Blockchain" },
     { name: "React", level: 90, category: "Frontend" },
     { name: "Next.js", level: 85, category: "Frontend" },
